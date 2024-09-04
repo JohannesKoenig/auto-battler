@@ -6,3 +6,4 @@ var current_value: int
 
 func _ready():
 	current_value = max_value
+	pass
