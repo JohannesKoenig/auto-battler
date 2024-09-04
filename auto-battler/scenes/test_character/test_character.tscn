@@ -1,0 +1,126 @@
+[gd_scene load_steps=11 format=3 uid="uid://cwbyoycnhronh"]
+
+[ext_resource type="PackedScene" uid="uid://ddmet4rbg0aug" path="res://scenes/character/character.tscn" id="1_ikad4"]
+[ext_resource type="SpriteFrames" uid="uid://bs3rodrtfh4gi" path="res://resources/test_character/test_character_sprite_frame.tres" id="2_ahdh4"]
+[ext_resource type="Script" path="res://scripts/character/character_idle_state.gd" id="2_lhbey"]
+[ext_resource type="Script" path="res://scripts/character/character_picked_up_state.gd" id="3_3mgnp"]
+[ext_resource type="PackedScene" uid="uid://chkysweqmobqt" path="res://scenes/test_character/test_character_input_generator.tscn" id="5_xvxi6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nx8i"]
+size = Vector2(4, 2)
+
+[sub_resource type="Animation" id="Animation_be1bq"]
+resource_name = "Idle"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_s7whm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_kocjn"]
+resource_name = "Dragging"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"PickedUp", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dylbj"]
+_data = {
+"Dragging": SubResource("Animation_kocjn"),
+"Idle": SubResource("Animation_be1bq"),
+"RESET": SubResource("Animation_s7whm")
+}
+
+[node name="TestCharacter" node_paths=PackedStringArray("character_input") instance=ExtResource("1_ikad4")]
+character_input = NodePath("CharacterInputGenerator")
+
+[node name="CharacterInputGenerator" parent="." index="0" instance=ExtResource("5_xvxi6")]
+
+[node name="CollisionShape2D" parent="CharacterInputGenerator/PickUpArea" index="0"]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" parent="CharacterModel/Physics" index="0"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_5nx8i")
+
+[node name="StateMachine" parent="CharacterModel" index="1"]
+starting_state = "Idle"
+
+[node name="Idle" type="Node" parent="CharacterModel/StateMachine" index="0"]
+script = ExtResource("2_lhbey")
+
+[node name="Dragging" type="Node" parent="CharacterModel/StateMachine" index="1"]
+script = ExtResource("3_3mgnp")
+
+[node name="AnimatedSprite2D" parent="CharacterVisuals" index="1"]
+position = Vector2(0, -7)
+sprite_frames = ExtResource("2_ahdh4")
+animation = &"PickedUp"
+
+[node name="AnimationPlayer" parent="CharacterVisuals" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_dylbj")
+}
+
+[editable path="CharacterInputGenerator"]
+[editable path="CharacterInputGenerator/PickUpArea"]
+[editable path="CharacterModel"]
+[editable path="CharacterVisuals"]

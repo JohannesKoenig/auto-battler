@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnvo4rn51br2y"]
+
+[ext_resource type="Script" path="res://scripts/character/character_input_generator.gd" id="1_27x3h"]
+[ext_resource type="PackedScene" uid="uid://lpdqmurl6ajw" path="res://scenes/pick_up_area.tscn" id="2_txjet"]
+
+[node name="CharacterInputGenerator" type="Node2D"]
+script = ExtResource("1_27x3h")
+
+[node name="PickUpArea" parent="." instance=ExtResource("2_txjet")]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0lfe4qsixnj1"]
+
+[ext_resource type="Script" path="res://scripts/character/character_model.gd" id="1_3f4ex"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_52gip"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qo1kl"]
+radius = 2.0
+height = 4.0
+
+[node name="CharacterModel" type="Node"]
+script = ExtResource("1_3f4ex")
+
+[node name="Physics" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Physics"]
+shape = SubResource("CapsuleShape2D_qo1kl")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_52gip")
