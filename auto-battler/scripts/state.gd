@@ -2,6 +2,7 @@ class_name State extends Node
 
 var enter_timestamp: float
 var _actor: CharacterBody2D
+@export var status_conditions: Array[StatusCondition] = []
 
 func accept_actor(actor: CharacterBody2D):
 	_actor = actor

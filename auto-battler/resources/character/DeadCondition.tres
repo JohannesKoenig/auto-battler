@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EmptyCondition" load_steps=2 format=3 uid="uid://i6tj3v7eegke"]
+
+[ext_resource type="Script" path="res://scripts/character/status_system/empty_condition.gd" id="1_87smw"]
+
+[resource]
+script = ExtResource("1_87smw")
+status = "Health"

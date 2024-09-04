@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0lfe4qsixnj1"]
+[gd_scene load_steps=6 format=3 uid="uid://c0lfe4qsixnj1"]
 
 [ext_resource type="Script" path="res://scripts/character/character_model.gd" id="1_3f4ex"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_52gip"]
+[ext_resource type="Script" path="res://scripts/character/status_system/character_status.gd" id="3_3ce1d"]
+[ext_resource type="Script" path="res://scripts/character/status_system/character_status_condition_validator.gd" id="4_ug5m6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qo1kl"]
 radius = 2.0
@@ -17,3 +19,10 @@ shape = SubResource("CapsuleShape2D_qo1kl")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_52gip")
+
+[node name="CharacterStatusConditionValidator" type="Node" parent="."]
+script = ExtResource("4_ug5m6")
+
+[node name="Health" type="Node" parent="CharacterStatusConditionValidator"]
+script = ExtResource("3_3ce1d")
+max_value = 100

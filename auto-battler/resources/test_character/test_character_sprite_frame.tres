@@ -1,7 +1,12 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bs3rodrtfh4gi"]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://bs3rodrtfh4gi"]
 
 [ext_resource type="Texture2D" uid="uid://ciceaqii1u07f" path="res://assets/test_character/test_character_idle.png" id="1_k3eeu"]
+[ext_resource type="Texture2D" uid="uid://cdnxspiqj42n4" path="res://assets/test_character/test_character_dead.png" id="1_y0n3g"]
 [ext_resource type="Texture2D" uid="uid://ciqx1a2ov0xac" path="res://assets/test_character/test_character_picked_up.png" id="2_q1ipp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iat0t"]
+atlas = ExtResource("1_y0n3g")
+region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ovarc"]
 atlas = ExtResource("1_k3eeu")
@@ -29,6 +34,14 @@ region = Rect2(24, 0, 8, 8)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iat0t")
+}],
+"loop": false,
+"name": &"Dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ovarc")

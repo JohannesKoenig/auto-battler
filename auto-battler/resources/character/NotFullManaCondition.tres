@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="NotFullCondition" load_steps=2 format=3 uid="uid://loggut67pg4b"]
+
+[ext_resource type="Script" path="res://scripts/character/status_system/not_full_condition.gd" id="1_v5f7p"]
+
+[resource]
+script = ExtResource("1_v5f7p")
+status = "Mana"

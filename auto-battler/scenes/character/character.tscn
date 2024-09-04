@@ -14,5 +14,7 @@ actor = NodePath("../Physics")
 
 [node name="CharacterVisuals" parent="." instance=ExtResource("3_e07sn")]
 
+[node name="Node" type="Node" parent="."]
+
 [editable path="CharacterModel"]
 [editable path="CharacterVisuals"]
