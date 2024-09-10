@@ -15,4 +15,5 @@ metadata/_snap_enabled = true
 
 [node name="DropShadow" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0.258824)
+y_sort_enabled = true
 texture = SubResource("GradientTexture2D_gdad1")

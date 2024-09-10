@@ -10,9 +10,9 @@ func accept_model(model: CharacterModel):
 
 func _process(_delta):
 	var current_state = _model.state_machine.current_state
-	print(current_state)
+	scale = _model.rig.scale
 	animation_player.play(current_state)
-	var health = _model.character_status_condition_validator.character_status_dictionary["Health"]
+	var health = _model.character_status_system.character_status_dictionary["Health"]
 	health_bar.max_value = health.max_value
 	health_bar.min_value = health.min_value
 	health_bar.value = health.current_value

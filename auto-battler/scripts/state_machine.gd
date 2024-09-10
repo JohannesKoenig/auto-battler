@@ -4,12 +4,15 @@ var current_state: String
 var states: Dictionary = {}
 @export var starting_state: String
 @export var actor: CharacterBody2D
+@export var rig: Node2D
 
 func _ready():
 	for child in get_children():
 		if child is State:
 			states[child.name] = child
 			child.accept_actor(actor)
+			child.accept_rig(rig)
+			
 	current_state = starting_state
 
 func update(input: StateMachineInput):
@@ -18,6 +21,7 @@ func update(input: StateMachineInput):
 	if next_state != current_state:
 		switch_states(next_state)
 	current_state_node.update(input)
+
 
 func switch_states(next_state: String):
 	var current_state_node = states[current_state]

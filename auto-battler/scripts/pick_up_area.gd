@@ -11,12 +11,21 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	mouse_inside = false
 
-func _process(delta):
-	if dragging and not Input.is_action_pressed("PickUp"):
+func validate_input(input: CharacterInput) -> CharacterInput:
+	if "PickUp" in input.actions:
+		if mouse_inside:
+			dragging = true
+		else: 
+			dragging = false
+			
+	if "Drop" in input.actions:
 		dragging = false
-		
-	if mouse_inside and Input.is_action_pressed("PickUp"):
-		dragging = true
-	
+
 	if dragging:
-		dragging_target = get_viewport().get_mouse_position()
+		input.dragging_target = get_viewport().get_mouse_position()
+	else:
+		var index = input.actions.find("Dragging")
+		if index > 0:
+			input.actions.remove_at(index)	
+	return input
+	

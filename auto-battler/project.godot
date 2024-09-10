@@ -33,6 +33,8 @@ PickUp={
 [layer_names]
 
 2d_physics/layer_10="PickUp"
+2d_physics/layer_11="Hitbox"
+2d_physics/layer_12="Hurtbox"
 
 [rendering]
 

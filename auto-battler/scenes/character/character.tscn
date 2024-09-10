@@ -5,12 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://dbbdvjxlfeklc" path="res://scenes/character/character_visuals.tscn" id="3_e07sn"]
 
 [node name="Character" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_ahc7c")
 
 [node name="CharacterModel" parent="." instance=ExtResource("2_s5qnw")]
-
-[node name="StateMachine" parent="CharacterModel" index="1" node_paths=PackedStringArray("actor")]
-actor = NodePath("../Physics")
 
 [node name="CharacterVisuals" parent="." instance=ExtResource("3_e07sn")]
 
