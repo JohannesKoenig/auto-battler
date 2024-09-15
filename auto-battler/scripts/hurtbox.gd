@@ -2,6 +2,7 @@ class_name Hurtbox extends Area2D
 
 @export var character: Character
 
+signal damaged(value: int)
 var registered_hit: bool = false
 
 var hit_registry: Dictionary = {}
@@ -14,6 +15,7 @@ func _process(_delta):
 				if last_id == area.hit_id:
 					continue
 			_register_hit(area)
+			damaged.emit(15)
 			
 		
 func _register_hit(hitbox: Hitbox):

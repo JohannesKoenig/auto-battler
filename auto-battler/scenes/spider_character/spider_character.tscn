@@ -1,0 +1,320 @@
+[gd_scene load_steps=29 format=3 uid="uid://bds1xhhttwpyx"]
+
+[ext_resource type="PackedScene" uid="uid://ddmet4rbg0aug" path="res://scenes/character/character.tscn" id="1_effx3"]
+[ext_resource type="Script" path="res://scripts/spider_character/spider_character_input_generator.gd" id="2_r0f6l"]
+[ext_resource type="PackedScene" uid="uid://lpdqmurl6ajw" path="res://scenes/pick_up_area.tscn" id="3_eh8dw"]
+[ext_resource type="Script" path="res://scripts/character/character_idle_state.gd" id="3_r2yk7"]
+[ext_resource type="PackedScene" uid="uid://cmqujuq2fquc6" path="res://scenes/target_scanner_area.tscn" id="4_30cba"]
+[ext_resource type="Script" path="res://scripts/character/status_system/status_condition.gd" id="4_amo0e"]
+[ext_resource type="Resource" uid="uid://bgbfdhgs4i8su" path="res://resources/character/AliveCondition.tres" id="5_741yo"]
+[ext_resource type="Script" path="res://scripts/character/character_picked_up_state.gd" id="6_fidt7"]
+[ext_resource type="Script" path="res://scripts/character/character_dead_state.gd" id="7_cb4qc"]
+[ext_resource type="Resource" uid="uid://i6tj3v7eegke" path="res://resources/character/DeadCondition.tres" id="8_a63vf"]
+[ext_resource type="Script" path="res://scripts/character/character_follow_state.gd" id="9_qk5n2"]
+[ext_resource type="PackedScene" uid="uid://wyhlklscjusu" path="res://scenes/character/slash.tscn" id="10_gd5v3"]
+[ext_resource type="Script" path="res://scripts/character/character_death_state.gd" id="11_faj22"]
+[ext_resource type="SpriteFrames" uid="uid://5vc1obw4urnf" path="res://scenes/spider_character/spider_character_sprite_frames.tres" id="12_slf5v"]
+[ext_resource type="PackedScene" uid="uid://b2pp6y8morpe7" path="res://scenes/character/shoot.tscn" id="14_got7r"]
+[ext_resource type="PackedScene" uid="uid://ch3f1ovlyve6m" path="res://scenes/projectile/spider_projectile.tscn" id="15_s5utn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8g75v"]
+radius = 83.57
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25jge"]
+size = Vector2(12, 2)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g55vm"]
+radius = 4.0
+height = 12.0
+
+[sub_resource type="Animation" id="Animation_2j3at"]
+resource_name = "Dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_to6s3"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_qt3ac"]
+resource_name = "Dragging"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Dragging", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_r2mv3"]
+resource_name = "Follow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Follow", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kbi8j"]
+resource_name = "Idle"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_t1u6u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+
+[sub_resource type="Animation" id="Animation_oitda"]
+resource_name = "Slash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -7)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Slash", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ssxmu"]
+resource_name = "Shoot"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Slash", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x1htw"]
+_data = {
+"Dead": SubResource("Animation_2j3at"),
+"Death": SubResource("Animation_to6s3"),
+"Dragging": SubResource("Animation_qt3ac"),
+"Follow": SubResource("Animation_r2mv3"),
+"Idle": SubResource("Animation_kbi8j"),
+"RESET": SubResource("Animation_t1u6u"),
+"Shoot": SubResource("Animation_ssxmu"),
+"Slash": SubResource("Animation_oitda")
+}
+
+[node name="SpiderCharacter" node_paths=PackedStringArray("character_input") instance=ExtResource("1_effx3")]
+character_input = NodePath("SpiderCharacterInputGenerator")
+
+[node name="SpiderCharacterInputGenerator" type="Node2D" parent="." index="0" node_paths=PackedStringArray("pick_up_area", "target_scanner_area")]
+script = ExtResource("2_r0f6l")
+pick_up_area = NodePath("Sensors/PickUpArea")
+target_scanner_area = NodePath("Sensors/TargetScannerArea")
+
+[node name="Sensors" type="Node2D" parent="SpiderCharacterInputGenerator" index="0"]
+
+[node name="PickUpArea" parent="SpiderCharacterInputGenerator/Sensors" index="0" instance=ExtResource("3_eh8dw")]
+position = Vector2(0, -2)
+
+[node name="TargetScannerArea" parent="SpiderCharacterInputGenerator/Sensors" index="1" node_paths=PackedStringArray("character") instance=ExtResource("4_30cba")]
+character = NodePath("../../..")
+
+[node name="CollisionShape2D" parent="SpiderCharacterInputGenerator/Sensors/TargetScannerArea" index="0"]
+shape = SubResource("CircleShape2D_8g75v")
+
+[node name="CharacterModel" parent="." index="1" node_paths=PackedStringArray("character")]
+character = NodePath("..")
+
+[node name="CollisionShape2D" parent="CharacterModel/Physics" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_25jge")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="CharacterModel/Physics/Rig" index="0"]
+remote_path = NodePath("../../../StateMachine/Slash")
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="CharacterModel/Physics/Rig" index="1"]
+remote_path = NodePath("../../../StateMachine/Shoot/ProjectileEmitter")
+
+[node name="Hurtbox" parent="CharacterModel/Physics" index="2" node_paths=PackedStringArray("character")]
+position = Vector2(-1, -5)
+character = NodePath("../../..")
+
+[node name="CollisionShape2D" parent="CharacterModel/Physics/Hurtbox" index="0"]
+position = Vector2(1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g55vm")
+
+[node name="StateMachine" parent="CharacterModel" index="1" node_paths=PackedStringArray("hurtbox")]
+starting_state = "Idle"
+hurtbox = NodePath("../Physics/Hurtbox")
+
+[node name="Idle" type="Node" parent="CharacterModel/StateMachine" index="0"]
+script = ExtResource("3_r2yk7")
+status_conditions = Array[ExtResource("4_amo0e")]([ExtResource("5_741yo")])
+
+[node name="Dragging" type="Node" parent="CharacterModel/StateMachine" index="1"]
+script = ExtResource("6_fidt7")
+status_conditions = Array[ExtResource("4_amo0e")]([ExtResource("5_741yo")])
+
+[node name="Dead" type="Node" parent="CharacterModel/StateMachine" index="2"]
+script = ExtResource("7_cb4qc")
+status_conditions = Array[ExtResource("4_amo0e")]([ExtResource("8_a63vf")])
+
+[node name="Follow" type="Node" parent="CharacterModel/StateMachine" index="3"]
+script = ExtResource("9_qk5n2")
+
+[node name="Slash" parent="CharacterModel/StateMachine" index="4" instance=ExtResource("10_gd5v3")]
+
+[node name="Hitbox" parent="CharacterModel/StateMachine/Slash/Rig" index="0" node_paths=PackedStringArray("character")]
+character = NodePath("../../../../..")
+
+[node name="Death" type="Node" parent="CharacterModel/StateMachine" index="5"]
+script = ExtResource("11_faj22")
+
+[node name="Shoot" parent="CharacterModel/StateMachine" index="6" instance=ExtResource("14_got7r")]
+projectile = ExtResource("15_s5utn")
+max_distance = 200.0
+
+[node name="Health" parent="CharacterModel/CharacterStatusSystem" index="0"]
+max_value = 300
+
+[node name="DropShadow" parent="CharacterVisuals" index="0"]
+scale = Vector2(2, 1)
+
+[node name="AnimatedSprite2D" parent="CharacterVisuals" index="1"]
+position = Vector2(0, -7)
+sprite_frames = ExtResource("12_slf5v")
+animation = &"Slash"
+frame = 6
+frame_progress = 1.0
+
+[node name="AnimationPlayer" parent="CharacterVisuals" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_x1htw")
+}
+
+[connection signal="death" from="CharacterModel" to="." method="_on_death"]
+
+[editable path="SpiderCharacterInputGenerator/Sensors/PickUpArea"]
+[editable path="SpiderCharacterInputGenerator/Sensors/TargetScannerArea"]
+[editable path="CharacterModel"]
+[editable path="CharacterModel/Physics/Hurtbox"]
+[editable path="CharacterModel/StateMachine/Slash"]
+[editable path="CharacterModel/StateMachine/Slash/Rig/Hitbox"]
+[editable path="CharacterModel/StateMachine/Shoot"]
+[editable path="CharacterVisuals"]

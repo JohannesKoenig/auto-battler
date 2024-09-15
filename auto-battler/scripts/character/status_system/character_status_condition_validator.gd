@@ -7,10 +7,6 @@ func _ready():
 		if child is CharacterStatus:
 			character_status_dictionary[child.name] = child
 
-func update(input: CharacterInput):
-	if input.take_damage:
-		character_status_dictionary["Health"].current_value -= 15
-
 func validate(input: CharacterInput, states: Dictionary) -> CharacterInput:
 	var filtered_actions: Array[String] = []
 	for action in input.actions:

@@ -10,4 +10,8 @@ func transition(input: StateMachineInput) -> String:
 
 func on_enter():
 	_actor.velocity = Vector2.ZERO
+	_actor.set_collision_mask_value(1, false) 
+	_actor.set_collision_layer_value(1, false)
+	_hurtbox.set_collision_layer_value(12, false)
+	_hurtbox.set_collision_mask_value(11, false)
 	super()

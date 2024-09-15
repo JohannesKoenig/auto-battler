@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/target_scanner_area.gd" id="1_uxr2b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qohv3"]
-radius = 37.1214
+radius = 52.0
 
 [node name="TargetScannerArea" type="Area2D"]
 collision_layer = 0

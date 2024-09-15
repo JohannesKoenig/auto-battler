@@ -5,6 +5,8 @@ var states: Dictionary = {}
 @export var starting_state: String
 @export var actor: CharacterBody2D
 @export var rig: Node2D
+@export var hurtbox: Hurtbox
+var character: Character
 
 func _ready():
 	for child in get_children():
@@ -12,8 +14,14 @@ func _ready():
 			states[child.name] = child
 			child.accept_actor(actor)
 			child.accept_rig(rig)
+			child.accept_hurtbox(hurtbox)
 			
 	current_state = starting_state
+
+func accept_character(character: Character):
+	self.character = character
+	for state in states.keys():
+		states[state].accept_character(character)
 
 func update(input: StateMachineInput):
 	var current_state_node = states[current_state]

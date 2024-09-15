@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch3f1ovlyve6m"]
+
+[ext_resource type="PackedScene" uid="uid://cl0c2tkhvrwyc" path="res://scenes/projectile/projectile.tscn" id="1_1u6pd"]
+[ext_resource type="PackedScene" uid="uid://bax0sdr54urst" path="res://scenes/on_hit_effects/spider_web_on_hit_effect.tscn" id="2_sgas6"]
+[ext_resource type="PackedScene" uid="uid://cl48lhlxxro5k" path="res://scenes/drop_shadow.tscn" id="3_5fl1c"]
+
+[sub_resource type="Gradient" id="Gradient_ftut2"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.207792, 0.659091)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1p1mv"]
+gradient = SubResource("Gradient_ftut2")
+width = 8
+height = 6
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[node name="Projectile" instance=ExtResource("1_1u6pd")]
+collision_layer = 0
+collision_mask = 0
+on_hit_effect = ExtResource("2_sgas6")
+speed = 80.0
+
+[node name="DropShadow" parent="." index="4" instance=ExtResource("3_5fl1c")]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(0, 3)
+texture = SubResource("GradientTexture2D_1p1mv")
+
+[editable path="Hitbox"]

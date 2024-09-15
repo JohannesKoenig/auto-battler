@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/character/character_model.gd" id="1_3f4ex"]
 [ext_resource type="Script" path="res://scripts/state_machine.gd" id="2_52gip"]
-[ext_resource type="Script" path="res://scripts/character/status_system/character_status.gd" id="3_3ce1d"]
+[ext_resource type="PackedScene" uid="uid://p8iuxnqt70q5" path="res://scenes/hurtbox.tscn" id="3_ic228"]
 [ext_resource type="Script" path="res://scripts/character/status_system/character_status_condition_validator.gd" id="4_ug5m6"]
 [ext_resource type="Script" path="res://scripts/character/attack_system/character_attack_system.gd" id="5_sw2mb"]
-[ext_resource type="PackedScene" uid="uid://lpdqmurl6ajw" path="res://scenes/pick_up_area.tscn" id="6_wbkxp"]
+[ext_resource type="Script" path="res://scripts/character/status_system/health_status.gd" id="6_yml1n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qo1kl"]
 radius = 2.0
@@ -21,7 +21,7 @@ shape = SubResource("CapsuleShape2D_qo1kl")
 
 [node name="Rig" type="Node2D" parent="Physics"]
 
-[node name="PickUpArea" parent="Physics" instance=ExtResource("6_wbkxp")]
+[node name="Hurtbox" parent="Physics" instance=ExtResource("3_ic228")]
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("actor", "rig")]
 script = ExtResource("2_52gip")
@@ -32,8 +32,10 @@ rig = NodePath("../Physics/Rig")
 script = ExtResource("4_ug5m6")
 
 [node name="Health" type="Node" parent="CharacterStatusSystem"]
-script = ExtResource("3_3ce1d")
+script = ExtResource("6_yml1n")
 max_value = 100
 
 [node name="CharacterAttackSystem" type="Node" parent="."]
 script = ExtResource("5_sw2mb")
+
+[connection signal="damaged" from="Physics/Hurtbox" to="CharacterStatusSystem/Health" method="take_damage"]

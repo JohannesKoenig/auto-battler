@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2pp6y8morpe7"]
+
+[ext_resource type="Script" path="res://scripts/character/character_shoot_state.gd" id="1_ysbq5"]
+[ext_resource type="PackedScene" uid="uid://cl0c2tkhvrwyc" path="res://scenes/projectile/projectile.tscn" id="2_8at0o"]
+
+[node name="Shoot" type="Node"]
+script = ExtResource("1_ysbq5")
+projectile = ExtResource("2_8at0o")
+
+[node name="ProjectileEmitter" type="Node2D" parent="."]

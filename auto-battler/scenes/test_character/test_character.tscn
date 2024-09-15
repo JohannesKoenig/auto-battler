@@ -5,9 +5,9 @@
 [ext_resource type="SpriteFrames" uid="uid://bs3rodrtfh4gi" path="res://resources/test_character/test_character_sprite_frame.tres" id="2_ahdh4"]
 [ext_resource type="Script" path="res://scripts/character/character_idle_state.gd" id="2_lhbey"]
 [ext_resource type="Script" path="res://scripts/character/character_picked_up_state.gd" id="3_3mgnp"]
+[ext_resource type="PackedScene" uid="uid://lpdqmurl6ajw" path="res://scenes/pick_up_area.tscn" id="3_msai6"]
 [ext_resource type="Script" path="res://scripts/character/status_system/status_condition.gd" id="4_16kio"]
 [ext_resource type="PackedScene" uid="uid://cmqujuq2fquc6" path="res://scenes/target_scanner_area.tscn" id="4_qqt3k"]
-[ext_resource type="PackedScene" uid="uid://p8iuxnqt70q5" path="res://scenes/hurtbox.tscn" id="5_a5r51"]
 [ext_resource type="Resource" uid="uid://bgbfdhgs4i8su" path="res://resources/character/AliveCondition.tres" id="7_fhr3b"]
 [ext_resource type="Script" path="res://scripts/character/character_dead_state.gd" id="7_ylm87"]
 [ext_resource type="Resource" uid="uid://i6tj3v7eegke" path="res://resources/character/DeadCondition.tres" id="8_srpx3"]
@@ -183,19 +183,17 @@ _data = {
 [node name="TestCharacter" node_paths=PackedStringArray("character_input") instance=ExtResource("1_ikad4")]
 character_input = NodePath("TestCharacterInputGenerator")
 
-[node name="Sensors" type="Node2D" parent="." index="0"]
-
-[node name="TargetScannerArea" parent="Sensors" index="0" node_paths=PackedStringArray("character") instance=ExtResource("4_qqt3k")]
-character = NodePath("../..")
-
-[node name="Hurtbox" parent="Sensors" index="1" node_paths=PackedStringArray("character") instance=ExtResource("5_a5r51")]
-character = NodePath("../..")
-
-[node name="TestCharacterInputGenerator" type="Node2D" parent="." index="1" node_paths=PackedStringArray("pick_up_area", "target_scanner_area", "hurtbox")]
+[node name="TestCharacterInputGenerator" type="Node2D" parent="." index="0" node_paths=PackedStringArray("pick_up_area", "target_scanner_area")]
 script = ExtResource("2_8ctal")
-pick_up_area = NodePath("")
-target_scanner_area = NodePath("../Sensors/TargetScannerArea")
-hurtbox = NodePath("../Sensors/Hurtbox")
+pick_up_area = NodePath("Sensors/PickUpArea")
+target_scanner_area = NodePath("Sensors/TargetScannerArea")
+
+[node name="Sensors" type="Node2D" parent="TestCharacterInputGenerator" index="0"]
+
+[node name="TargetScannerArea" parent="TestCharacterInputGenerator/Sensors" index="0" node_paths=PackedStringArray("character") instance=ExtResource("4_qqt3k")]
+character = NodePath("../../..")
+
+[node name="PickUpArea" parent="TestCharacterInputGenerator/Sensors" index="1" instance=ExtResource("3_msai6")]
 
 [node name="CollisionShape2D" parent="CharacterModel/Physics" index="0"]
 position = Vector2(0, 3)
@@ -204,8 +202,12 @@ shape = SubResource("RectangleShape2D_5nx8i")
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="CharacterModel/Physics/Rig" index="0"]
 remote_path = NodePath("../../../StateMachine/Slash")
 
-[node name="StateMachine" parent="CharacterModel" index="1"]
+[node name="Hurtbox" parent="CharacterModel/Physics" index="2" node_paths=PackedStringArray("character")]
+character = NodePath("../../..")
+
+[node name="StateMachine" parent="CharacterModel" index="1" node_paths=PackedStringArray("hurtbox")]
 starting_state = "Idle"
+hurtbox = NodePath("../Physics/Hurtbox")
 
 [node name="Idle" type="Node" parent="CharacterModel/StateMachine" index="0"]
 script = ExtResource("2_lhbey")

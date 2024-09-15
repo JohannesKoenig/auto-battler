@@ -7,6 +7,8 @@ func transition(input: StateMachineInput) -> String:
 		return "Dead"
 	if "Dragging" in input.actions:
 		return "Dragging"
+	if "Shoot" in input.actions:
+		return "Shoot"
 	if "Slash" in input.actions:
 		return "Slash"
 	if name in input.actions:

@@ -1,87 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://d01towpe124w6"]
+[gd_scene load_steps=3 format=3 uid="uid://d01towpe124w6"]
 
 [ext_resource type="PackedScene" uid="uid://cwbyoycnhronh" path="res://scenes/test_character/test_character.tscn" id="1_ky73d"]
+[ext_resource type="PackedScene" uid="uid://bds1xhhttwpyx" path="res://scenes/spider_character/spider_character.tscn" id="2_s3qdi"]
 
 [node name="BattleField" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Character" parent="." instance=ExtResource("1_ky73d")]
-y_sort_enabled = false
-position = Vector2(103, 63)
-
-[node name="Character3" parent="." instance=ExtResource("1_ky73d")]
-y_sort_enabled = false
-position = Vector2(68, 63)
-
-[node name="Character4" parent="." instance=ExtResource("1_ky73d")]
-y_sort_enabled = false
-position = Vector2(87, 79)
-
-[node name="Character5" parent="." instance=ExtResource("1_ky73d")]
-y_sort_enabled = false
-position = Vector2(80, 46)
-
 [node name="Character2" parent="." instance=ExtResource("1_ky73d")]
 modulate = Color(1, 0.458827, 0.410723, 1)
 y_sort_enabled = false
-position = Vector2(137, 63)
+position = Vector2(172, 87)
 team = 1
 
-[node name="Character6" parent="." instance=ExtResource("1_ky73d")]
-modulate = Color(1, 0.458827, 0.410723, 1)
-y_sort_enabled = false
-position = Vector2(173, 88)
-team = 1
+[node name="SpiderCharacter" parent="." instance=ExtResource("2_s3qdi")]
+position = Vector2(95, 86)
 
-[node name="Character7" parent="." instance=ExtResource("1_ky73d")]
-modulate = Color(1, 0.458827, 0.410723, 1)
-y_sort_enabled = false
-position = Vector2(176, 66)
-team = 1
+[node name="AnimatedSprite2D" parent="SpiderCharacter/CharacterVisuals" index="1"]
+animation = &"Idle"
+frame = 0
+frame_progress = 0.0
 
-[node name="Character8" parent="." instance=ExtResource("1_ky73d")]
-modulate = Color(1, 0.458827, 0.410723, 1)
-y_sort_enabled = false
-position = Vector2(179, 39)
-team = 1
-
-[editable path="Character"]
-[editable path="Character/CharacterModel"]
-[editable path="Character/CharacterModel/StateMachine/Slash"]
-[editable path="Character/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
-[editable path="Character/CharacterVisuals"]
-[editable path="Character3"]
-[editable path="Character3/CharacterModel"]
-[editable path="Character3/CharacterModel/StateMachine/Slash"]
-[editable path="Character3/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
-[editable path="Character3/CharacterVisuals"]
-[editable path="Character4"]
-[editable path="Character4/CharacterModel"]
-[editable path="Character4/CharacterModel/StateMachine/Slash"]
-[editable path="Character4/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
-[editable path="Character4/CharacterVisuals"]
-[editable path="Character5"]
-[editable path="Character5/CharacterModel"]
-[editable path="Character5/CharacterModel/StateMachine/Slash"]
-[editable path="Character5/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
-[editable path="Character5/CharacterVisuals"]
 [editable path="Character2"]
 [editable path="Character2/CharacterModel"]
 [editable path="Character2/CharacterModel/StateMachine/Slash"]
 [editable path="Character2/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
 [editable path="Character2/CharacterVisuals"]
-[editable path="Character6"]
-[editable path="Character6/CharacterModel"]
-[editable path="Character6/CharacterModel/StateMachine/Slash"]
-[editable path="Character6/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
-[editable path="Character6/CharacterVisuals"]
-[editable path="Character7"]
-[editable path="Character7/CharacterModel"]
-[editable path="Character7/CharacterModel/StateMachine/Slash"]
-[editable path="Character7/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
-[editable path="Character7/CharacterVisuals"]
-[editable path="Character8"]
-[editable path="Character8/CharacterModel"]
-[editable path="Character8/CharacterModel/StateMachine/Slash"]
-[editable path="Character8/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
-[editable path="Character8/CharacterVisuals"]
+[editable path="SpiderCharacter"]
+[editable path="SpiderCharacter/SpiderCharacterInputGenerator/Sensors/PickUpArea"]
+[editable path="SpiderCharacter/SpiderCharacterInputGenerator/Sensors/TargetScannerArea"]
+[editable path="SpiderCharacter/CharacterModel"]
+[editable path="SpiderCharacter/CharacterModel/Physics/Hurtbox"]
+[editable path="SpiderCharacter/CharacterModel/StateMachine/Slash"]
+[editable path="SpiderCharacter/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
+[editable path="SpiderCharacter/CharacterVisuals"]

@@ -3,6 +3,8 @@ class_name State extends Node
 var enter_timestamp: float
 var _actor: CharacterBody2D
 var _rig: Node2D
+var _hurtbox: Hurtbox
+var _character: Character
 @export var status_conditions: Array[StatusCondition] = []
 
 func accept_actor(actor: CharacterBody2D):
@@ -10,6 +12,12 @@ func accept_actor(actor: CharacterBody2D):
 
 func accept_rig(rig: Node2D):
 	_rig = rig
+
+func accept_hurtbox(hurtbox: Hurtbox):
+	_hurtbox = hurtbox
+
+func accept_character(character: Character):
+	_character = character
 
 func transition(input: StateMachineInput) -> String:
 	return name

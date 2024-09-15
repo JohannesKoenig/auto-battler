@@ -1,4 +1,4 @@
-class_name TestCharacterInputGenerator extends CharacterInputGenerator
+class_name SpiderCharacterInputGenerator extends CharacterInputGenerator
 
 
 func get_input() -> CharacterInput:
@@ -11,6 +11,7 @@ func get_input() -> CharacterInput:
 	if target_scanner_area.has_target:
 		character_input.actions.append("Follow")
 		character_input.actions.append("Slash")
+		character_input.actions.append("Shoot")
 		character_input.target = target_scanner_area.target
 		character_input.has_target = true
 

@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://bax0sdr54urst"]
+
+[ext_resource type="Script" path="res://scripts/on_hit_effects/spider_web_on_hit_effect.gd" id="1_rwgte"]
+[ext_resource type="Texture2D" uid="uid://bf5r4tnpgxcy2" path="res://resources/particle.tres" id="2_b2u3o"]
+
+[sub_resource type="Curve" id="Curve_dtsw6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i26gc"]
+curve = SubResource("Curve_dtsw6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dxk57"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_i26gc")
+
+[sub_resource type="Gradient" id="Gradient_3c362"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fpn7l"]
+gradient = SubResource("Gradient_3c362")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h8lqf"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 10, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_max = 21.51
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+color_ramp = SubResource("GradientTexture1D_fpn7l")
+
+[sub_resource type="Gradient" id="Gradient_fdvan"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0584416, 0.892857, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.509804, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w3rbv"]
+gradient = SubResource("Gradient_fdvan")
+width = 40
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Animation" id="Animation_84i3u"]
+resource_name = "effect"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e0gmd"]
+_data = {
+"effect": SubResource("Animation_84i3u")
+}
+
+[node name="SpiderWebOnHitEffect" type="Node2D"]
+script = ExtResource("1_rwgte")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_dxk57")
+texture = ExtResource("2_b2u3o")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+
+[node name="RingParticles" type="GPUParticles2D" parent="."]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_h8lqf")
+texture = ExtResource("2_b2u3o")
+
+[node name="Ring" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_w3rbv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e0gmd")
+}
