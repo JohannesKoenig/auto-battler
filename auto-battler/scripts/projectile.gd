@@ -19,15 +19,23 @@ func _ready():
 	hitbox.character = character
 
 func on_hit():
-	if on_hit_effect:
-		var instance = on_hit_effect.instantiate()
-		instance.global_position = global_position
-		get_tree().root.add_child(instance)
-		instance.start()
-		sprite_2d.visible = false
-		drop_shadow.visible = false
+	if on_hit_effect and active:
+		call_deferred("_spawn_on_hit_effect")
+		_deactivate()
 		animation_player.play("on_hit")
-		
+
+func _spawn_on_hit_effect():
+	var instance = on_hit_effect.instantiate()
+	instance.global_position = global_position
+	get_tree().root.add_child(instance)
+	instance.character = character
+	instance.start()
+
+func _deactivate():
+	sprite_2d.visible = false
+	drop_shadow.visible = false
+	active = false
+	# hitbox.active = false
 
 func shoot(target: Vector2):
 	self.target = target

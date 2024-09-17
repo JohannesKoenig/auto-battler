@@ -24,6 +24,8 @@ func update(input: StateMachineInput):
 	if input.has_target:
 		var direction = (target - _actor.global_position).normalized()
 		var velocity = direction * movement_speed
+		if "Slowed" in _buff_system.buffs:
+			velocity /= 2
 		_actor.velocity = velocity
 		if _is_left(target):
 			_rig.scale = Vector2(-1, 1)

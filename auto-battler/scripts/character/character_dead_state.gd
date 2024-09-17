@@ -15,3 +15,6 @@ func on_enter():
 	_hurtbox.set_collision_layer_value(12, false)
 	_hurtbox.set_collision_mask_value(11, false)
 	super()
+
+func update(input: StateMachineInput):
+	_actor.velocity = Vector2.ZERO

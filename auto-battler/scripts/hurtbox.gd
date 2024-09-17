@@ -15,7 +15,9 @@ func _process(_delta):
 				if last_id == area.hit_id:
 					continue
 			_register_hit(area)
-			damaged.emit(15)
+			damaged.emit(area.damage)
+			for buff in area.character_buffs:
+				character.character_model.character_buff_system.add_buff(buff)
 			
 		
 func _register_hit(hitbox: Hitbox):

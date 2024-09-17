@@ -7,24 +7,87 @@
 y_sort_enabled = true
 
 [node name="Character2" parent="." instance=ExtResource("1_ky73d")]
-modulate = Color(1, 0.458827, 0.410723, 1)
 y_sort_enabled = false
 position = Vector2(172, 87)
 team = 1
 
+[node name="TeamMarker" parent="Character2/CharacterVisuals" index="4"]
+modulate = Color(1, 0.273775, 0.215238, 1)
+
+[node name="Character3" parent="." instance=ExtResource("1_ky73d")]
+y_sort_enabled = false
+position = Vector2(183, 91)
+team = 1
+
+[node name="AnimatedSprite2D" parent="Character3/CharacterVisuals/Rig" index="1"]
+animation = &"Idle"
+
+[node name="TeamMarker" parent="Character3/CharacterVisuals" index="4"]
+modulate = Color(1, 0.27451, 0.215686, 1)
+
+[node name="Character4" parent="." instance=ExtResource("1_ky73d")]
+y_sort_enabled = false
+position = Vector2(188, 76)
+team = 1
+
+[node name="AnimatedSprite2D" parent="Character4/CharacterVisuals/Rig" index="1"]
+animation = &"Idle"
+
+[node name="TeamMarker" parent="Character4/CharacterVisuals" index="4"]
+modulate = Color(1, 0.27451, 0.215686, 1)
+
+[node name="Character5" parent="." instance=ExtResource("1_ky73d")]
+y_sort_enabled = false
+position = Vector2(199, 108)
+team = 1
+
+[node name="AnimatedSprite2D" parent="Character5/CharacterVisuals/Rig" index="1"]
+animation = &"Idle"
+
+[node name="TeamMarker" parent="Character5/CharacterVisuals" index="4"]
+modulate = Color(1, 0.27451, 0.215686, 1)
+
+[node name="Character6" parent="." instance=ExtResource("1_ky73d")]
+y_sort_enabled = false
+position = Vector2(118, 118)
+
+[node name="AnimatedSprite2D" parent="Character6/CharacterVisuals/Rig" index="1"]
+animation = &"Idle"
+
+[node name="TeamMarker" parent="Character6/CharacterVisuals" index="4"]
+modulate = Color(0, 0.727476, 0.312647, 1)
+
 [node name="SpiderCharacter" parent="." instance=ExtResource("2_s3qdi")]
 position = Vector2(95, 86)
 
-[node name="AnimatedSprite2D" parent="SpiderCharacter/CharacterVisuals" index="1"]
-animation = &"Idle"
-frame = 0
-frame_progress = 0.0
+[node name="TeamMarker" parent="SpiderCharacter/CharacterVisuals" index="4"]
+modulate = Color(0, 0.729412, 0.313726, 1)
 
 [editable path="Character2"]
 [editable path="Character2/CharacterModel"]
 [editable path="Character2/CharacterModel/StateMachine/Slash"]
 [editable path="Character2/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
 [editable path="Character2/CharacterVisuals"]
+[editable path="Character3"]
+[editable path="Character3/CharacterModel"]
+[editable path="Character3/CharacterModel/StateMachine/Slash"]
+[editable path="Character3/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
+[editable path="Character3/CharacterVisuals"]
+[editable path="Character4"]
+[editable path="Character4/CharacterModel"]
+[editable path="Character4/CharacterModel/StateMachine/Slash"]
+[editable path="Character4/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
+[editable path="Character4/CharacterVisuals"]
+[editable path="Character5"]
+[editable path="Character5/CharacterModel"]
+[editable path="Character5/CharacterModel/StateMachine/Slash"]
+[editable path="Character5/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
+[editable path="Character5/CharacterVisuals"]
+[editable path="Character6"]
+[editable path="Character6/CharacterModel"]
+[editable path="Character6/CharacterModel/StateMachine/Slash"]
+[editable path="Character6/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
+[editable path="Character6/CharacterVisuals"]
 [editable path="SpiderCharacter"]
 [editable path="SpiderCharacter/SpiderCharacterInputGenerator/Sensors/PickUpArea"]
 [editable path="SpiderCharacter/SpiderCharacterInputGenerator/Sensors/TargetScannerArea"]
@@ -32,4 +95,5 @@ frame_progress = 0.0
 [editable path="SpiderCharacter/CharacterModel/Physics/Hurtbox"]
 [editable path="SpiderCharacter/CharacterModel/StateMachine/Slash"]
 [editable path="SpiderCharacter/CharacterModel/StateMachine/Slash/Rig/Hitbox"]
+[editable path="SpiderCharacter/CharacterModel/StateMachine/Shoot"]
 [editable path="SpiderCharacter/CharacterVisuals"]

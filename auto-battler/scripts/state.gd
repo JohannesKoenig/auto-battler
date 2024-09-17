@@ -5,7 +5,9 @@ var _actor: CharacterBody2D
 var _rig: Node2D
 var _hurtbox: Hurtbox
 var _character: Character
+var _buff_system: CharacterBuffSystem
 @export var status_conditions: Array[StatusCondition] = []
+@export var cool_down: float = 0.0
 
 func accept_actor(actor: CharacterBody2D):
 	_actor = actor
@@ -18,6 +20,9 @@ func accept_hurtbox(hurtbox: Hurtbox):
 
 func accept_character(character: Character):
 	_character = character
+
+func accept_buff_system(buff_system: CharacterBuffSystem):
+	_buff_system = buff_system
 
 func transition(input: StateMachineInput) -> String:
 	return name
@@ -40,3 +45,6 @@ func _has_passed(time: float):
 
 func _is_left(target: Vector2) -> bool:
 	return target.x < _actor.global_position.x
+
+func on_cool_down() -> bool:
+	return not _has_passed(cool_down)

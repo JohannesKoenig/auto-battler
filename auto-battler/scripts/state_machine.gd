@@ -6,6 +6,7 @@ var states: Dictionary = {}
 @export var actor: CharacterBody2D
 @export var rig: Node2D
 @export var hurtbox: Hurtbox
+@export var character_buff_system: CharacterBuffSystem
 var character: Character
 
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 			child.accept_actor(actor)
 			child.accept_rig(rig)
 			child.accept_hurtbox(hurtbox)
+			child.accept_buff_system(character_buff_system)
 			
 	current_state = starting_state
 

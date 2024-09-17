@@ -1,6 +1,6 @@
 class_name CharacterShootState extends CharacterAttackState
 
-var duration: float = 10
+var duration: float = 1
 var spawn_delay: float = 0.5
 @export var projectile: PackedScene
 @onready var projectile_emitter = $ProjectileEmitter

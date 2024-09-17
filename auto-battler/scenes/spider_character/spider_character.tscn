@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bds1xhhttwpyx"]
+[gd_scene load_steps=31 format=3 uid="uid://bds1xhhttwpyx"]
 
 [ext_resource type="PackedScene" uid="uid://ddmet4rbg0aug" path="res://scenes/character/character.tscn" id="1_effx3"]
 [ext_resource type="Script" path="res://scripts/spider_character/spider_character_input_generator.gd" id="2_r0f6l"]
@@ -32,7 +32,7 @@ resource_name = "Dead"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +47,7 @@ resource_name = "Death"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +62,7 @@ resource_name = "Dragging"
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -76,7 +76,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -91,7 +91,7 @@ resource_name = "Follow"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -103,7 +103,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D")
+tracks/1/path = NodePath("Rig/AnimatedSprite2D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -120,7 +120,7 @@ resource_name = "Idle"
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -134,7 +134,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -149,7 +149,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -159,12 +159,30 @@ tracks/0/keys = {
 "values": [Vector2(0, -7)]
 }
 
+[sub_resource type="Animation" id="Animation_ssxmu"]
+resource_name = "Shoot"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Slash", 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_oitda"]
 resource_name = "Slash"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -176,28 +194,10 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D")
+tracks/1/path = NodePath("Rig/AnimatedSprite2D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Slash", 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_ssxmu"]
-resource_name = "Shoot"
-length = 10.0
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -217,6 +217,20 @@ _data = {
 "Shoot": SubResource("Animation_ssxmu"),
 "Slash": SubResource("Animation_oitda")
 }
+
+[sub_resource type="Gradient" id="Gradient_ggbq6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.175325, 0.743506, 0.948052)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lrnp7"]
+gradient = SubResource("Gradient_ggbq6")
+width = 18
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
 
 [node name="SpiderCharacter" node_paths=PackedStringArray("character_input") instance=ExtResource("1_effx3")]
 character_input = NodePath("SpiderCharacterInputGenerator")
@@ -259,9 +273,8 @@ position = Vector2(1, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_g55vm")
 
-[node name="StateMachine" parent="CharacterModel" index="1" node_paths=PackedStringArray("hurtbox")]
+[node name="StateMachine" parent="CharacterModel" index="1"]
 starting_state = "Idle"
-hurtbox = NodePath("../Physics/Hurtbox")
 
 [node name="Idle" type="Node" parent="CharacterModel/StateMachine" index="0"]
 script = ExtResource("3_r2yk7")
@@ -282,6 +295,7 @@ script = ExtResource("9_qk5n2")
 
 [node name="Hitbox" parent="CharacterModel/StateMachine/Slash/Rig" index="0" node_paths=PackedStringArray("character")]
 character = NodePath("../../../../..")
+damage = 25.0
 
 [node name="Death" type="Node" parent="CharacterModel/StateMachine" index="5"]
 script = ExtResource("11_faj22")
@@ -289,24 +303,26 @@ script = ExtResource("11_faj22")
 [node name="Shoot" parent="CharacterModel/StateMachine" index="6" instance=ExtResource("14_got7r")]
 projectile = ExtResource("15_s5utn")
 max_distance = 200.0
+cool_down = 10.0
 
 [node name="Health" parent="CharacterModel/CharacterStatusSystem" index="0"]
 max_value = 300
 
-[node name="DropShadow" parent="CharacterVisuals" index="0"]
-scale = Vector2(2, 1)
-
-[node name="AnimatedSprite2D" parent="CharacterVisuals" index="1"]
-position = Vector2(0, -7)
-sprite_frames = ExtResource("12_slf5v")
-animation = &"Slash"
-frame = 6
-frame_progress = 1.0
-
-[node name="AnimationPlayer" parent="CharacterVisuals" index="2"]
+[node name="AnimationPlayer" parent="CharacterVisuals" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_x1htw")
 }
+
+[node name="DropShadow" parent="CharacterVisuals/Rig" index="0"]
+scale = Vector2(2, 1)
+
+[node name="AnimatedSprite2D" parent="CharacterVisuals/Rig" index="1"]
+position = Vector2(0, -7)
+sprite_frames = ExtResource("12_slf5v")
+animation = &"Idle"
+
+[node name="TeamMarker" parent="CharacterVisuals" index="4"]
+texture = SubResource("GradientTexture2D_lrnp7")
 
 [connection signal="death" from="CharacterModel" to="." method="_on_death"]
 

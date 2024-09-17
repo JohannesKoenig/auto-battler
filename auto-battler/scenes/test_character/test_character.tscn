@@ -23,7 +23,7 @@ resource_name = "Dead"
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -37,7 +37,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -55,7 +55,7 @@ resource_name = "Dragging"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,7 +67,7 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D")
+tracks/1/path = NodePath("Rig/AnimatedSprite2D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -84,7 +84,7 @@ resource_name = "Follow"
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -98,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -113,7 +113,7 @@ resource_name = "Idle"
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -127,7 +127,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -142,7 +142,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -157,7 +157,7 @@ resource_name = "Slash"
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -205,9 +205,8 @@ remote_path = NodePath("../../../StateMachine/Slash")
 [node name="Hurtbox" parent="CharacterModel/Physics" index="2" node_paths=PackedStringArray("character")]
 character = NodePath("../../..")
 
-[node name="StateMachine" parent="CharacterModel" index="1" node_paths=PackedStringArray("hurtbox")]
+[node name="StateMachine" parent="CharacterModel" index="1"]
 starting_state = "Idle"
-hurtbox = NodePath("../Physics/Hurtbox")
 
 [node name="Idle" type="Node" parent="CharacterModel/StateMachine" index="0"]
 script = ExtResource("2_lhbey")
@@ -232,19 +231,19 @@ character = NodePath("../../../../..")
 [node name="Death" type="Node" parent="CharacterModel/StateMachine" index="5"]
 script = ExtResource("11_oautr")
 
-[node name="AnimatedSprite2D" parent="CharacterVisuals" index="1"]
-position = Vector2(0, -7)
-sprite_frames = ExtResource("2_ahdh4")
-animation = &"Slash"
-
-[node name="AnimationPlayer" parent="CharacterVisuals" index="2"]
+[node name="AnimationPlayer" parent="CharacterVisuals" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_dylbj")
 }
 
-[node name="HealthBar" parent="CharacterVisuals" index="3"]
+[node name="HealthBar" parent="CharacterVisuals" index="1"]
 offset_top = -12.0
 offset_bottom = -11.0
+
+[node name="AnimatedSprite2D" parent="CharacterVisuals/Rig" index="1"]
+position = Vector2(0, -7)
+sprite_frames = ExtResource("2_ahdh4")
+animation = &"Dead"
 
 [connection signal="death" from="CharacterModel" to="." method="_on_death"]
 

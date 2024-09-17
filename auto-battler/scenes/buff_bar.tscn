@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6q8fktxvm7yc"]
+
+[ext_resource type="Script" path="res://scripts/buff_bar.gd" id="1_0qwhb"]
+
+[node name="BuffBar" type="HBoxContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_0qwhb")

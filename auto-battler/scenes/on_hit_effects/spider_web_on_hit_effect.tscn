@@ -1,7 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bax0sdr54urst"]
+[gd_scene load_steps=16 format=3 uid="uid://bax0sdr54urst"]
 
 [ext_resource type="Script" path="res://scripts/on_hit_effects/spider_web_on_hit_effect.gd" id="1_rwgte"]
 [ext_resource type="Texture2D" uid="uid://bf5r4tnpgxcy2" path="res://resources/particle.tres" id="2_b2u3o"]
+[ext_resource type="PackedScene" uid="uid://btg5wfi6pan7o" path="res://scenes/hitbox.tscn" id="3_g5usc"]
+[ext_resource type="Script" path="res://scripts/character/buff_system/slowed_character_buff.gd" id="4_xpcaq"]
+[ext_resource type="Texture2D" uid="uid://b2u6rbnowjhwd" path="res://assets/icons/slowed_icon.png" id="5_yomv1"]
 
 [sub_resource type="Curve" id="Curve_dtsw6"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -78,9 +81,11 @@ _data = {
 }
 
 [node name="SpiderWebOnHitEffect" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_rwgte")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+y_sort_enabled = true
 emitting = false
 process_material = SubResource("ParticleProcessMaterial_dxk57")
 texture = ExtResource("2_b2u3o")
@@ -89,14 +94,31 @@ one_shot = true
 explosiveness = 1.0
 
 [node name="RingParticles" type="GPUParticles2D" parent="."]
+y_sort_enabled = true
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_h8lqf")
 texture = ExtResource("2_b2u3o")
 
 [node name="Ring" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
 texture = SubResource("GradientTexture2D_w3rbv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_e0gmd")
 }
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("character_buffs") instance=ExtResource("3_g5usc")]
+damage = 0.0
+character_buffs = [NodePath("Slowed")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+rotation = 1.5708
+
+[node name="Slowed" type="Node" parent="Hitbox"]
+script = ExtResource("4_xpcaq")
+texture = ExtResource("5_yomv1")
+duration = 5.0
+
+[editable path="Hitbox"]

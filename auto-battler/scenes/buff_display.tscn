@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://13s1ibyan6jb"]
+
+[node name="BuffDisplay" type="TextureRect"]

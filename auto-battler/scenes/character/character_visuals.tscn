@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbbdvjxlfeklc"]
+[gd_scene load_steps=8 format=3 uid="uid://dbbdvjxlfeklc"]
 
 [ext_resource type="Script" path="res://scripts/character/character_visuals.gd" id="1_3raoo"]
 [ext_resource type="PackedScene" uid="uid://cl48lhlxxro5k" path="res://scenes/drop_shadow.tscn" id="2_f3lg6"]
+[ext_resource type="PackedScene" uid="uid://b6q8fktxvm7yc" path="res://scenes/buff_bar.tscn" id="3_fedsg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2isv"]
 bg_color = Color(0, 0, 0, 0.211765)
@@ -9,13 +10,22 @@ bg_color = Color(0, 0, 0, 0.211765)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l5d1"]
 bg_color = Color(0.706365, 0, 0.0259532, 1)
 
+[sub_resource type="Gradient" id="Gradient_ggbq6"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.175325, 0.743506, 0.948052)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dvvqt"]
+gradient = SubResource("Gradient_ggbq6")
+width = 10
+height = 5
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
 [node name="CharacterVisuals" type="Node2D"]
 script = ExtResource("1_3raoo")
-
-[node name="DropShadow" parent="." instance=ExtResource("2_f3lg6")]
-y_sort_enabled = false
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -29,3 +39,23 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_8l5d1")
 step = 1.0
 value = 50.0
 show_percentage = false
+
+[node name="BuffBar" parent="." instance=ExtResource("3_fedsg")]
+custom_minimum_size = Vector2(24, 8)
+offset_left = -12.0
+offset_top = -21.0
+offset_right = 12.0
+offset_bottom = -13.0
+alignment = 1
+
+[node name="Rig" type="Node2D" parent="."]
+
+[node name="DropShadow" parent="Rig" instance=ExtResource("2_f3lg6")]
+y_sort_enabled = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Rig"]
+
+[node name="TeamMarker" type="Sprite2D" parent="."]
+z_index = -1
+y_sort_enabled = true
+texture = SubResource("GradientTexture2D_dvvqt")
