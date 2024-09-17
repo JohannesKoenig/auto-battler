@@ -9,13 +9,7 @@ var shot: bool = false
 
 func transition(input: StateMachineInput) -> String:
 	if _has_passed(duration):
-		return "Idle"
-	if "Dead" in input.actions:
-		return "Dead"
-	if "Dragging" in input.actions:
-		return "Dragging"
-	if name in input.actions:
-		return name
+		return input.actions[0]
 	return name
 
 func update(input: StateMachineInput):

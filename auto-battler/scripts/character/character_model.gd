@@ -19,6 +19,8 @@ func update(input: CharacterInput):
 	input = character_status_system.validate(input, state_machine.states)
 	input = character_attack_system.validate(input, state_machine.states)
 	input = cool_down_validator.validate(input, state_machine.states)
+	input.sort(state_machine.states)
+	
 	state_machine.update(input)
 	physics.move_and_slide()
 	

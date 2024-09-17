@@ -283,15 +283,19 @@ status_conditions = Array[ExtResource("4_amo0e")]([ExtResource("5_741yo")])
 [node name="Dragging" type="Node" parent="CharacterModel/StateMachine" index="1"]
 script = ExtResource("6_fidt7")
 status_conditions = Array[ExtResource("4_amo0e")]([ExtResource("5_741yo")])
+priority = 1
 
 [node name="Dead" type="Node" parent="CharacterModel/StateMachine" index="2"]
 script = ExtResource("7_cb4qc")
 status_conditions = Array[ExtResource("4_amo0e")]([ExtResource("8_a63vf")])
+priority = 0
 
 [node name="Follow" type="Node" parent="CharacterModel/StateMachine" index="3"]
 script = ExtResource("9_qk5n2")
+priority = 9
 
 [node name="Slash" parent="CharacterModel/StateMachine" index="4" instance=ExtResource("10_gd5v3")]
+priority = 8
 
 [node name="Hitbox" parent="CharacterModel/StateMachine/Slash/Rig" index="0" node_paths=PackedStringArray("character")]
 character = NodePath("../../../../..")
@@ -299,11 +303,13 @@ damage = 25.0
 
 [node name="Death" type="Node" parent="CharacterModel/StateMachine" index="5"]
 script = ExtResource("11_faj22")
+priority = 0
 
 [node name="Shoot" parent="CharacterModel/StateMachine" index="6" instance=ExtResource("14_got7r")]
 projectile = ExtResource("15_s5utn")
 max_distance = 200.0
 cool_down = 10.0
+priority = 7
 
 [node name="Health" parent="CharacterModel/CharacterStatusSystem" index="0"]
 max_value = 300

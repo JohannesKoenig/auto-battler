@@ -8,6 +8,7 @@ var _character: Character
 var _buff_system: CharacterBuffSystem
 @export var status_conditions: Array[StatusCondition] = []
 @export var cool_down: float = 0.0
+@export var priority: int = 10
 
 func accept_actor(actor: CharacterBody2D):
 	_actor = actor
@@ -25,6 +26,8 @@ func accept_buff_system(buff_system: CharacterBuffSystem):
 	_buff_system = buff_system
 
 func transition(input: StateMachineInput) -> String:
+	if len(input.actions) > 0:
+		return input.actions[0]
 	return name
 
 func on_exit():

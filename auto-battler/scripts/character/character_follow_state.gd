@@ -2,20 +2,6 @@ class_name CharacterFollowState extends State
 
 var movement_speed: float = 10
 
-func transition(input: StateMachineInput) -> String:
-	if "Dead" in input.actions:
-		return "Dead"
-	if "Dragging" in input.actions:
-		return "Dragging"
-	if "Shoot" in input.actions:
-		return "Shoot"
-	if "Slash" in input.actions:
-		return "Slash"
-	if name in input.actions:
-		return name
-	if "Idle" in input.actions:
-		return "Idle"
-	return name
 
 func update(input: StateMachineInput):
 	if input is not CharacterInput:

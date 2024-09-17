@@ -215,21 +215,26 @@ status_conditions = Array[ExtResource("4_16kio")]([ExtResource("7_fhr3b")])
 [node name="Dragging" type="Node" parent="CharacterModel/StateMachine" index="1"]
 script = ExtResource("3_3mgnp")
 status_conditions = Array[ExtResource("4_16kio")]([ExtResource("7_fhr3b")])
+priority = 1
 
 [node name="Dead" type="Node" parent="CharacterModel/StateMachine" index="2"]
 script = ExtResource("7_ylm87")
 status_conditions = Array[ExtResource("4_16kio")]([ExtResource("8_srpx3")])
+priority = 0
 
 [node name="Follow" type="Node" parent="CharacterModel/StateMachine" index="3"]
 script = ExtResource("9_e73uk")
+priority = 9
 
 [node name="Slash" parent="CharacterModel/StateMachine" index="4" instance=ExtResource("10_6guyo")]
+priority = 8
 
 [node name="Hitbox" parent="CharacterModel/StateMachine/Slash/Rig" index="0" node_paths=PackedStringArray("character")]
 character = NodePath("../../../../..")
 
 [node name="Death" type="Node" parent="CharacterModel/StateMachine" index="5"]
 script = ExtResource("11_oautr")
+priority = 0
 
 [node name="AnimationPlayer" parent="CharacterVisuals" index="0"]
 libraries = {
