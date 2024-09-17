@@ -236,7 +236,7 @@ libraries = {
 "": SubResource("AnimationLibrary_dylbj")
 }
 
-[node name="HealthBar" parent="CharacterVisuals" index="1"]
+[node name="HealthBar" parent="CharacterVisuals" index="2"]
 offset_top = -12.0
 offset_bottom = -11.0
 

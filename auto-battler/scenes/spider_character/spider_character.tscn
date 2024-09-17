@@ -321,7 +321,7 @@ position = Vector2(0, -7)
 sprite_frames = ExtResource("12_slf5v")
 animation = &"Idle"
 
-[node name="TeamMarker" parent="CharacterVisuals" index="4"]
+[node name="TeamMarker" parent="CharacterVisuals" index="5"]
 texture = SubResource("GradientTexture2D_lrnp7")
 
 [connection signal="death" from="CharacterModel" to="." method="_on_death"]

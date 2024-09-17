@@ -11,7 +11,7 @@ y_sort_enabled = false
 position = Vector2(172, 87)
 team = 1
 
-[node name="TeamMarker" parent="Character2/CharacterVisuals" index="4"]
+[node name="TeamMarker" parent="Character2/CharacterVisuals" index="5"]
 modulate = Color(1, 0.273775, 0.215238, 1)
 
 [node name="Character3" parent="." instance=ExtResource("1_ky73d")]
@@ -22,7 +22,7 @@ team = 1
 [node name="AnimatedSprite2D" parent="Character3/CharacterVisuals/Rig" index="1"]
 animation = &"Idle"
 
-[node name="TeamMarker" parent="Character3/CharacterVisuals" index="4"]
+[node name="TeamMarker" parent="Character3/CharacterVisuals" index="5"]
 modulate = Color(1, 0.27451, 0.215686, 1)
 
 [node name="Character4" parent="." instance=ExtResource("1_ky73d")]
@@ -33,7 +33,7 @@ team = 1
 [node name="AnimatedSprite2D" parent="Character4/CharacterVisuals/Rig" index="1"]
 animation = &"Idle"
 
-[node name="TeamMarker" parent="Character4/CharacterVisuals" index="4"]
+[node name="TeamMarker" parent="Character4/CharacterVisuals" index="5"]
 modulate = Color(1, 0.27451, 0.215686, 1)
 
 [node name="Character5" parent="." instance=ExtResource("1_ky73d")]
@@ -44,7 +44,7 @@ team = 1
 [node name="AnimatedSprite2D" parent="Character5/CharacterVisuals/Rig" index="1"]
 animation = &"Idle"
 
-[node name="TeamMarker" parent="Character5/CharacterVisuals" index="4"]
+[node name="TeamMarker" parent="Character5/CharacterVisuals" index="5"]
 modulate = Color(1, 0.27451, 0.215686, 1)
 
 [node name="Character6" parent="." instance=ExtResource("1_ky73d")]
@@ -54,14 +54,14 @@ position = Vector2(118, 118)
 [node name="AnimatedSprite2D" parent="Character6/CharacterVisuals/Rig" index="1"]
 animation = &"Idle"
 
-[node name="TeamMarker" parent="Character6/CharacterVisuals" index="4"]
-modulate = Color(0, 0.727476, 0.312647, 1)
+[node name="TeamMarker" parent="Character6/CharacterVisuals" index="5"]
+modulate = Color(0, 0.654241, 0.907674, 1)
 
 [node name="SpiderCharacter" parent="." instance=ExtResource("2_s3qdi")]
 position = Vector2(95, 86)
 
-[node name="TeamMarker" parent="SpiderCharacter/CharacterVisuals" index="4"]
-modulate = Color(0, 0.729412, 0.313726, 1)
+[node name="TeamMarker" parent="SpiderCharacter/CharacterVisuals" index="5"]
+modulate = Color(0, 0.654902, 0.905882, 1)
 
 [editable path="Character2"]
 [editable path="Character2/CharacterModel"]
