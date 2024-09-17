@@ -9,6 +9,8 @@ class_name CharacterModel extends Node
 @onready var character_attack_system = $CharacterAttackSystem
 @onready var cool_down_validator = $CoolDownValidator
 @onready var character_buff_system = $CharacterBuffSystem
+@onready var navigation_agent_2d = $Physics/NavigationAgent2D
+
 
 signal death
 

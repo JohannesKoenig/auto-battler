@@ -25,12 +25,19 @@ shape = SubResource("CapsuleShape2D_qo1kl")
 
 [node name="Hurtbox" parent="Physics" instance=ExtResource("3_ic228")]
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("actor", "rig", "hurtbox", "character_buff_system")]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Physics"]
+avoidance_enabled = true
+radius = 3.0
+neighbor_distance = 200.0
+max_speed = 10.0
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("actor", "rig", "hurtbox", "character_buff_system", "navigation_agent")]
 script = ExtResource("2_52gip")
 actor = NodePath("../Physics")
 rig = NodePath("../Physics/Rig")
 hurtbox = NodePath("../Physics/Hurtbox")
 character_buff_system = NodePath("../CharacterBuffSystem")
+navigation_agent = NodePath("../Physics/NavigationAgent2D")
 
 [node name="CharacterStatusSystem" type="Node" parent="."]
 script = ExtResource("4_ug5m6")

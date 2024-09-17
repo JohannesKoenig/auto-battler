@@ -7,6 +7,7 @@ var states: Dictionary = {}
 @export var rig: Node2D
 @export var hurtbox: Hurtbox
 @export var character_buff_system: CharacterBuffSystem
+@export var navigation_agent: NavigationAgent2D
 var character: Character
 
 func _ready():
@@ -17,6 +18,7 @@ func _ready():
 			child.accept_rig(rig)
 			child.accept_hurtbox(hurtbox)
 			child.accept_buff_system(character_buff_system)
+			child.accept_navigation_agent(navigation_agent)
 			
 	current_state = starting_state
 

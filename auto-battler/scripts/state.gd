@@ -6,6 +6,8 @@ var _rig: Node2D
 var _hurtbox: Hurtbox
 var _character: Character
 var _buff_system: CharacterBuffSystem
+var _navigation_agent: NavigationAgent2D
+var active: bool = false
 @export var status_conditions: Array[StatusCondition] = []
 @export var cool_down: float = 0.0
 @export var priority: int = 10
@@ -25,15 +27,20 @@ func accept_character(character: Character):
 func accept_buff_system(buff_system: CharacterBuffSystem):
 	_buff_system = buff_system
 
+func accept_navigation_agent(navigation_agent: NavigationAgent2D):
+	_navigation_agent = navigation_agent
+
 func transition(input: StateMachineInput) -> String:
 	if len(input.actions) > 0:
 		return input.actions[0]
 	return name
 
 func on_exit():
+	active = false
 	pass
 
 func on_enter():
+	active = true
 	_mark_enter()
 	pass
 
