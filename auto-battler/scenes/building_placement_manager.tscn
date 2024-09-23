@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://kx4ruox0gvjb"]
+
+[ext_resource type="Script" path="res://scripts/building_placement_manager.gd" id="1_q5ifk"]
+
+[node name="BuildingPlacementManager" type="Node2D"]
+script = ExtResource("1_q5ifk")
+
+[node name="GhostTexture" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.482353)

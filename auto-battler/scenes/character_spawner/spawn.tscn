@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://dytfg3swscsnd"]
+
+[ext_resource type="Script" path="res://scripts/character_spawner/character_spawn_spawning_state.gd" id="1_4imbp"]
+[ext_resource type="PackedScene" uid="uid://cwbyoycnhronh" path="res://scenes/test_character/test_character.tscn" id="2_2b013"]
+[ext_resource type="Script" path="res://scripts/character/status_system/status_condition.gd" id="3_0gifk"]
+[ext_resource type="Resource" uid="uid://bgbfdhgs4i8su" path="res://resources/character/AliveCondition.tres" id="4_75cgl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lqnlt"]
+radius = 4.0
+
+[node name="Spawn" type="Node"]
+script = ExtResource("1_4imbp")
+character_template = ExtResource("2_2b013")
+status_conditions = Array[ExtResource("3_0gifk")]([ExtResource("4_75cgl")])
+cool_down = 5.0
+priority = 9
+
+[node name="Rig" type="Node2D" parent="."]
+
+[node name="SpawnTarget" type="Area2D" parent="Rig"]
+collision_layer = 0
+collision_mask = 2048
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rig/SpawnTarget"]
+shape = SubResource("CircleShape2D_lqnlt")

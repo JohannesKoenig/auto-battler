@@ -39,3 +39,6 @@ func _get_configuration_warnings():
 
 	# Returning an empty array means "no warning".
 	return warnings
+
+func get_ghost_texture() -> Texture:
+	return character_visuals.get_ghost_texture()

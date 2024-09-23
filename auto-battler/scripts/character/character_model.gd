@@ -21,10 +21,13 @@ func update(input: CharacterInput):
 	input = character_status_system.validate(input, state_machine.states)
 	input = character_attack_system.validate(input, state_machine.states)
 	input = cool_down_validator.validate(input, state_machine.states)
+	input = state_machine.validate(input)
+	input = DraggingManager.validate(input, character.team)
 	input.sort(state_machine.states)
 	
 	state_machine.update(input)
-	physics.move_and_slide()
-	
+	if not state_machine.states[state_machine.current_state].freeze_physics:
+		physics.move_and_slide()
+
 	if state_machine.current_state == "Death":
 		death.emit()

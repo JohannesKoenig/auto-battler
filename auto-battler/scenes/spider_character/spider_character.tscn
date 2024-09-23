@@ -218,15 +218,15 @@ _data = {
 "Slash": SubResource("Animation_oitda")
 }
 
-[sub_resource type="Gradient" id="Gradient_ggbq6"]
+[sub_resource type="Gradient" id="Gradient_lcxyw"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0.175325, 0.743506, 0.948052)
+offsets = PackedFloat32Array(0.175325, 0.799383, 0.948052)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lrnp7"]
-gradient = SubResource("Gradient_ggbq6")
-width = 18
-height = 8
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tc3ys"]
+gradient = SubResource("Gradient_lcxyw")
+width = 20
+height = 10
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
@@ -250,9 +250,6 @@ character = NodePath("../../..")
 
 [node name="CollisionShape2D" parent="SpiderCharacterInputGenerator/Sensors/TargetScannerArea" index="0"]
 shape = SubResource("CircleShape2D_8g75v")
-
-[node name="CharacterModel" parent="." index="1" node_paths=PackedStringArray("character")]
-character = NodePath("..")
 
 [node name="CollisionShape2D" parent="CharacterModel/Physics" index="0"]
 position = Vector2(0, -1)
@@ -322,13 +319,13 @@ libraries = {
 [node name="DropShadow" parent="CharacterVisuals/Rig" index="0"]
 scale = Vector2(2, 1)
 
-[node name="AnimatedSprite2D" parent="CharacterVisuals/Rig" index="1"]
+[node name="TeamMarker" parent="CharacterVisuals/Rig" index="1"]
+texture = SubResource("GradientTexture2D_tc3ys")
+
+[node name="AnimatedSprite2D" parent="CharacterVisuals/Rig" index="2"]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("12_slf5v")
 animation = &"Idle"
-
-[node name="TeamMarker" parent="CharacterVisuals" index="5"]
-texture = SubResource("GradientTexture2D_lrnp7")
 
 [connection signal="death" from="CharacterModel" to="." method="_on_death"]
 

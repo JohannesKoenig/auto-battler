@@ -22,4 +22,4 @@ func _process(delta):
 		dragging = false
 
 	if dragging:
-		dragging_target = get_viewport().get_mouse_position()
+		dragging_target = get_viewport().get_mouse_position() + get_viewport().get_camera_2d().global_position

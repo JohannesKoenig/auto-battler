@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cwbyoycnhronh"]
+[gd_scene load_steps=27 format=3 uid="uid://cwbyoycnhronh"]
 
 [ext_resource type="PackedScene" uid="uid://ddmet4rbg0aug" path="res://scenes/character/character.tscn" id="1_ikad4"]
 [ext_resource type="Script" path="res://scripts/test_character/test_character_input_generator.gd" id="2_8ctal"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/character/character_follow_state.gd" id="9_e73uk"]
 [ext_resource type="PackedScene" uid="uid://wyhlklscjusu" path="res://scenes/character/slash.tscn" id="10_6guyo"]
 [ext_resource type="Script" path="res://scripts/character/character_death_state.gd" id="11_oautr"]
+[ext_resource type="Texture2D" uid="uid://bvy1eskiwqg6y" path="res://assets/city_hall/city_hall_idle.png" id="14_3wv0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5nx8i"]
 size = Vector2(4, 2)
@@ -44,7 +45,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -4)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1o1ap"]
@@ -62,7 +63,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -7)]
+"values": [Vector2(0, -3)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -105,7 +106,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -4)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_be1bq"]
@@ -134,7 +135,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -4)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_s7whm"]
@@ -168,6 +169,18 @@ tracks/0/keys = {
 "method": &"play"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Rig/AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dylbj"]
 _data = {
@@ -179,6 +192,20 @@ _data = {
 "RESET": SubResource("Animation_s7whm"),
 "Slash": SubResource("Animation_ov63a")
 }
+
+[sub_resource type="Gradient" id="Gradient_cshj3"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.175325, 0.746914, 0.948052)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oeqis"]
+gradient = SubResource("Gradient_cshj3")
+width = 10
+height = 5
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
 
 [node name="TestCharacter" node_paths=PackedStringArray("character_input") instance=ExtResource("1_ikad4")]
 character_input = NodePath("TestCharacterInputGenerator")
@@ -219,6 +246,7 @@ priority = 1
 
 [node name="Dead" type="Node" parent="CharacterModel/StateMachine" index="2"]
 script = ExtResource("7_ylm87")
+freeze_physics = true
 status_conditions = Array[ExtResource("4_16kio")]([ExtResource("8_srpx3")])
 priority = 0
 
@@ -234,21 +262,25 @@ character = NodePath("../../../../..")
 
 [node name="Death" type="Node" parent="CharacterModel/StateMachine" index="5"]
 script = ExtResource("11_oautr")
+freeze_physics = true
 priority = 0
+
+[node name="CharacterVisuals" parent="." index="2"]
+ghost_texture = ExtResource("14_3wv0o")
 
 [node name="AnimationPlayer" parent="CharacterVisuals" index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_dylbj")
 }
 
-[node name="HealthBar" parent="CharacterVisuals" index="2"]
-offset_top = -12.0
-offset_bottom = -11.0
+[node name="TeamMarker" parent="CharacterVisuals/Rig" index="1"]
+texture = SubResource("GradientTexture2D_oeqis")
 
-[node name="AnimatedSprite2D" parent="CharacterVisuals/Rig" index="1"]
+[node name="AnimatedSprite2D" parent="CharacterVisuals/Rig" index="2"]
 position = Vector2(0, -7)
 sprite_frames = ExtResource("2_ahdh4")
-animation = &"Dead"
+animation = &"Idle"
+offset = Vector2(0, -4)
 
 [connection signal="death" from="CharacterModel" to="." method="_on_death"]
 

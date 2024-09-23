@@ -9,6 +9,10 @@ var duration: float = 1
 func transition(input: StateMachineInput) -> String:
 	if _has_passed(duration):
 		return "Idle"
+	if "Dragging" in input.actions:
+		return "Dragging"
+	if "Dead" in input.actions:
+		return "Dragging"
 	return name
 
 func update(input: StateMachineInput):

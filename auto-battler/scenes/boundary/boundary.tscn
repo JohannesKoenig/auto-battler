@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://jpkoefpuhisw"]
+
+[ext_resource type="TileSet" uid="uid://bdl2w6jfbk17v" path="res://resources/marker_tile_set.tres" id="2_kllvu"]
+[ext_resource type="Script" path="res://scripts/tile_map_dual.gd" id="2_v414l"]
+[ext_resource type="Script" path="res://scripts/boundary/boundary.gd" id="2_wbvqy"]
+
+[node name="Boundary" type="Node2D"]
+script = ExtResource("2_wbvqy")
+
+[node name="WorldMap" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_kllvu")
+
+[node name="TileMapDual" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_tilemap")]
+position = Vector2(-8, -8)
+tile_set = ExtResource("2_kllvu")
+script = ExtResource("2_v414l")
+world_tilemap = NodePath("../WorldMap")

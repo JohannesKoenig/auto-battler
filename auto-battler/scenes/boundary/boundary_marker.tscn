@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://so17xqhwrqpq"]
+
+[ext_resource type="Texture2D" uid="uid://rnmcde61m3uh" path="res://assets/boundary_marker.png" id="1_b0l8q"]
+[ext_resource type="Script" path="res://scripts/boundary/boundary_marker.gd" id="1_tkuge"]
+[ext_resource type="Texture2D" uid="uid://dlmmki46x8wxg" path="res://assets/boundary_marker_color.png" id="2_hi4pq"]
+
+[node name="BoundaryMarker" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_tkuge")
+
+[node name="Marker" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("1_b0l8q")
+offset = Vector2(0, -3)
+
+[node name="TeamColoring" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("2_hi4pq")
+offset = Vector2(0, -3)

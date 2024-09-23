@@ -9,7 +9,12 @@ var hit_registry: Dictionary = {}
 
 func _process(_delta):
 	for area in get_overlapping_areas():
-		if area is Hitbox and area.character.team != character.team and area.active:
+		
+		if (area is Hitbox 
+			and area.character != null 
+			and area.character.team != character.team 
+			and area.active
+		):
 			if area in hit_registry:
 				var last_id = hit_registry[area]
 				if last_id == area.hit_id:

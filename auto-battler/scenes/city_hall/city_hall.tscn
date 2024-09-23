@@ -1,0 +1,154 @@
+[gd_scene load_steps=22 format=3 uid="uid://copvlrm5kqwgk"]
+
+[ext_resource type="PackedScene" uid="uid://cw3ww6udrwxwe" path="res://scenes/character_spawner/character_spawner.tscn" id="1_yol5h"]
+[ext_resource type="PackedScene" uid="uid://dv4rwsexepa7j" path="res://scenes/explorer/explorer_character.tscn" id="2_d0164"]
+[ext_resource type="Texture2D" uid="uid://dcujrp06lhscy" path="res://assets/city_hall/city_hall_dead.png" id="3_y3kes"]
+[ext_resource type="Texture2D" uid="uid://bvy1eskiwqg6y" path="res://assets/city_hall/city_hall_idle.png" id="4_7u4to"]
+[ext_resource type="Texture2D" uid="uid://caxn0uicjpbmv" path="res://assets/city_hall/city_hall_spawn.png" id="5_77ovg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pk8yc"]
+size = Vector2(5, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ai7h2"]
+size = Vector2(32, 5)
+
+[sub_resource type="Gradient" id="Gradient_plmxi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.207792, 0.659091)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m2c4l"]
+gradient = SubResource("Gradient_plmxi")
+width = 40
+height = 18
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_coj1w"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.175325, 0.848765, 0.948052)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yuuvv"]
+gradient = SubResource("Gradient_coj1w")
+width = 48
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_203xn"]
+atlas = ExtResource("3_y3kes")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02pvh"]
+atlas = ExtResource("4_7u4to")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryp31"]
+atlas = ExtResource("5_77ovg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhwcr"]
+atlas = ExtResource("5_77ovg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwhqs"]
+atlas = ExtResource("5_77ovg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhuc1"]
+atlas = ExtResource("5_77ovg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hd8r"]
+atlas = ExtResource("5_77ovg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1feb"]
+atlas = ExtResource("5_77ovg")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb8ml"]
+atlas = ExtResource("5_77ovg")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x2k7j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_203xn")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02pvh")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryp31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhwcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwhqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhuc1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hd8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1feb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb8ml")
+}],
+"loop": false,
+"name": &"Spawn",
+"speed": 5.0
+}]
+
+[node name="CityHall" instance=ExtResource("1_yol5h")]
+
+[node name="CollisionShape2D" parent="CharacterModel/Physics" index="0"]
+shape = SubResource("RectangleShape2D_pk8yc")
+
+[node name="CollisionShape2D" parent="CharacterModel/Physics/Hurtbox" index="0"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_ai7h2")
+
+[node name="Spawn" parent="CharacterModel/StateMachine" index="1"]
+character_template = ExtResource("2_d0164")
+max_spawn = 2
+spawn_radius = 30.0
+cool_down = 20.0
+
+[node name="DropShadow" parent="CharacterVisuals/Rig" index="0"]
+position = Vector2(0, -2)
+scale = Vector2(1, 1)
+texture = SubResource("GradientTexture2D_m2c4l")
+
+[node name="TeamMarker" parent="CharacterVisuals/Rig" index="1"]
+position = Vector2(0, -1)
+texture = SubResource("GradientTexture2D_yuuvv")
+
+[node name="AnimatedSprite2D" parent="CharacterVisuals/Rig" index="2"]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_x2k7j")
+
+[editable path="CharacterModel"]
+[editable path="CharacterModel/Physics/Hurtbox"]
+[editable path="CharacterModel/StateMachine/Spawn"]
+[editable path="CharacterVisuals"]

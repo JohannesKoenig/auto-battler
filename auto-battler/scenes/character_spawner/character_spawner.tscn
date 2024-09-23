@@ -1,0 +1,267 @@
+[gd_scene load_steps=32 format=3 uid="uid://cw3ww6udrwxwe"]
+
+[ext_resource type="PackedScene" uid="uid://ddmet4rbg0aug" path="res://scenes/character/character.tscn" id="1_oik0s"]
+[ext_resource type="Script" path="res://scripts/character_spawner/character_spawner_input_generator.gd" id="2_k8hxe"]
+[ext_resource type="PackedScene" uid="uid://lpdqmurl6ajw" path="res://scenes/pick_up_area.tscn" id="3_xfbc6"]
+[ext_resource type="PackedScene" uid="uid://cmqujuq2fquc6" path="res://scenes/target_scanner_area.tscn" id="4_nqoqv"]
+[ext_resource type="Script" path="res://scripts/character_spawner/character_spawner_idle_state.gd" id="5_5crbj"]
+[ext_resource type="Texture2D" uid="uid://dkeiibdto5caw" path="res://assets/character_spawner/baracks/baracks.png" id="6_x3sj8"]
+[ext_resource type="Script" path="res://scripts/character/status_system/status_condition.gd" id="7_01wuw"]
+[ext_resource type="Resource" uid="uid://bgbfdhgs4i8su" path="res://resources/character/AliveCondition.tres" id="8_0bygs"]
+[ext_resource type="PackedScene" uid="uid://dytfg3swscsnd" path="res://scenes/character_spawner/spawn.tscn" id="8_1ajin"]
+[ext_resource type="PackedScene" uid="uid://ccul7rqr4oa2a" path="res://scenes/pip_display.tscn" id="9_kucn8"]
+[ext_resource type="Texture2D" uid="uid://1ewm5bp0sjlj" path="res://assets/character_spawner/baracks/baracks_spawn.png" id="10_5ljw4"]
+[ext_resource type="Script" path="res://scripts/character/character_dead_state.gd" id="10_ms063"]
+[ext_resource type="Resource" uid="uid://i6tj3v7eegke" path="res://resources/character/DeadCondition.tres" id="11_dpgvs"]
+[ext_resource type="Script" path="res://scripts/character/character_death_state.gd" id="11_ll74k"]
+[ext_resource type="Texture2D" uid="uid://fwe4bd2ih64j" path="res://assets/character_spawner/baracks/baracks_death.png" id="12_xx4lx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t12mg"]
+size = Vector2(3, 20)
+
+[sub_resource type="Animation" id="Animation_tuisk"]
+resource_name = "Dead"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Dead", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_p6nkv"]
+resource_name = "Death"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Dead", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_s2fj0"]
+resource_name = "Idle"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Idle", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qmu4i"]
+resource_name = "Spawn"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rig/AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Spawn", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_btpfp"]
+_data = {
+"Dead": SubResource("Animation_tuisk"),
+"Death": SubResource("Animation_p6nkv"),
+"Idle": SubResource("Animation_s2fj0"),
+"Spawn": SubResource("Animation_qmu4i")
+}
+
+[sub_resource type="Gradient" id="Gradient_53kjf"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.175325, 0.842593, 0.948052)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dt2cj"]
+gradient = SubResource("Gradient_53kjf")
+width = 30
+height = 15
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3yvm"]
+atlas = ExtResource("12_xx4lx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhka2"]
+atlas = ExtResource("6_x3sj8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0fs4"]
+atlas = ExtResource("10_5ljw4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8t14"]
+atlas = ExtResource("10_5ljw4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxbki"]
+atlas = ExtResource("10_5ljw4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmyil"]
+atlas = ExtResource("10_5ljw4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm6m1"]
+atlas = ExtResource("10_5ljw4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xcjd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3yvm")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhka2")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0fs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8t14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxbki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxbki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxbki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmyil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm6m1")
+}],
+"loop": false,
+"name": &"Spawn",
+"speed": 5.0
+}]
+
+[node name="CharacterSpawner" node_paths=PackedStringArray("character_input") instance=ExtResource("1_oik0s")]
+character_input = NodePath("CharacterSpawnerInputGenerator")
+
+[node name="CharacterSpawnerInputGenerator" type="Node2D" parent="." index="0" node_paths=PackedStringArray("pick_up_area", "target_scanner_area")]
+script = ExtResource("2_k8hxe")
+pick_up_area = NodePath("PickUpArea")
+target_scanner_area = NodePath("TargetScannerArea")
+
+[node name="PickUpArea" parent="CharacterSpawnerInputGenerator" index="0" instance=ExtResource("3_xfbc6")]
+
+[node name="TargetScannerArea" parent="CharacterSpawnerInputGenerator" index="1" node_paths=PackedStringArray("character") instance=ExtResource("4_nqoqv")]
+character = NodePath("../..")
+
+[node name="CollisionShape2D" parent="CharacterModel/Physics" index="0"]
+position = Vector2(-6.55671e-08, -0.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_t12mg")
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="CharacterModel/Physics/Rig" index="0"]
+remote_path = NodePath("../../../StateMachine/Spawn/Rig")
+
+[node name="Hurtbox" parent="CharacterModel/Physics" index="2" node_paths=PackedStringArray("character")]
+character = NodePath("../../..")
+
+[node name="StateMachine" parent="CharacterModel" index="1"]
+starting_state = "Idle"
+
+[node name="Idle" type="Node" parent="CharacterModel/StateMachine" index="0"]
+script = ExtResource("5_5crbj")
+freeze_physics = true
+status_conditions = Array[ExtResource("7_01wuw")]([ExtResource("8_0bygs")])
+
+[node name="Spawn" parent="CharacterModel/StateMachine" index="1" instance=ExtResource("8_1ajin")]
+freeze_physics = true
+
+[node name="SpawnTarget" parent="CharacterModel/StateMachine/Spawn/Rig" index="0"]
+position = Vector2(20, 0)
+
+[node name="Dead" type="Node" parent="CharacterModel/StateMachine" index="2"]
+script = ExtResource("10_ms063")
+freeze_physics = true
+status_conditions = Array[ExtResource("7_01wuw")]([ExtResource("11_dpgvs")])
+priority = 0
+
+[node name="Death" type="Node" parent="CharacterModel/StateMachine" index="3"]
+script = ExtResource("11_ll74k")
+freeze_physics = true
+status_conditions = Array[ExtResource("7_01wuw")]([ExtResource("11_dpgvs")])
+priority = 0
+
+[node name="AnimationPlayer" parent="CharacterVisuals" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_btpfp")
+}
+
+[node name="HealthBar" parent="CharacterVisuals/GUI" index="1"]
+offset_top = -25.0
+offset_bottom = -24.0
+
+[node name="PipDisplay" parent="CharacterVisuals/GUI" index="3" node_paths=PackedStringArray("spawn_state") instance=ExtResource("9_kucn8")]
+offset_top = -21.0
+offset_bottom = -21.0
+spawn_state = NodePath("../../../CharacterModel/StateMachine/Spawn")
+
+[node name="DropShadow" parent="CharacterVisuals/Rig" index="0"]
+scale = Vector2(4, 2)
+
+[node name="TeamMarker" parent="CharacterVisuals/Rig" index="1"]
+texture = SubResource("GradientTexture2D_dt2cj")
+
+[node name="AnimatedSprite2D" parent="CharacterVisuals/Rig" index="2"]
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_4xcjd")
+animation = &"Idle"
+autoplay = "Idle"
+offset = Vector2(0, -8)
+
+[connection signal="death" from="CharacterModel" to="." method="_on_death"]
+
+[editable path="CharacterModel"]
+[editable path="CharacterModel/StateMachine/Spawn"]
+[editable path="CharacterVisuals"]

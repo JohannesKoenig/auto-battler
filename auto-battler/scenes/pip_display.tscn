@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccul7rqr4oa2a"]
+
+[ext_resource type="Script" path="res://scripts/pip_display.gd" id="1_msi88"]
+
+[node name="PipDisplay" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_msi88")

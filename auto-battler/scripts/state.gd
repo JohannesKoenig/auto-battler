@@ -8,9 +8,12 @@ var _character: Character
 var _buff_system: CharacterBuffSystem
 var _navigation_agent: NavigationAgent2D
 var active: bool = false
+@export var freeze_physics: bool = false
 @export var status_conditions: Array[StatusCondition] = []
 @export var cool_down: float = 0.0
 @export var priority: int = 10
+
+signal entered
 
 func accept_actor(actor: CharacterBody2D):
 	_actor = actor
@@ -40,6 +43,7 @@ func on_exit():
 	pass
 
 func on_enter():
+	entered.emit()
 	active = true
 	_mark_enter()
 	pass
@@ -58,3 +62,6 @@ func _is_left(target: Vector2) -> bool:
 
 func on_cool_down() -> bool:
 	return not _has_passed(cool_down)
+
+func is_valid() -> bool:
+	return true

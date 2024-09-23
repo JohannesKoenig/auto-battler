@@ -6,6 +6,7 @@ var target: Vector2
 var has_target: bool = false
 
 
+
 func accept_navigation_agent(navigation_agent: NavigationAgent2D):
 	_navigation_agent = navigation_agent
 	_navigation_agent.velocity_computed.connect(_update_movement)

@@ -10,6 +10,9 @@ var states: Dictionary = {}
 @export var navigation_agent: NavigationAgent2D
 var character: Character
 
+signal death
+signal dead
+
 func _ready():
 	for child in get_children():
 		if child is State:
@@ -34,10 +37,18 @@ func update(input: StateMachineInput):
 		switch_states(next_state)
 	current_state_node.update(input)
 
-
 func switch_states(next_state: String):
 	var current_state_node = states[current_state]
 	current_state_node.on_exit()
 	var next_state_node = states[next_state]
 	next_state_node.on_enter()
 	current_state = next_state
+
+func validate(input: StateMachineInput) -> StateMachineInput:
+	var filtered_actions: Array[String] = []
+	for action in input.actions:
+		var state_node = states[action]
+		if state_node.is_valid():
+			filtered_actions.append(action)
+	input.actions = filtered_actions
+	return input

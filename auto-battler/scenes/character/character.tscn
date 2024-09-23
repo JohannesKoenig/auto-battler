@@ -8,9 +8,11 @@
 y_sort_enabled = true
 script = ExtResource("1_ahc7c")
 
-[node name="CharacterModel" parent="." instance=ExtResource("2_s5qnw")]
+[node name="CharacterModel" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_s5qnw")]
+character = NodePath("..")
 
-[node name="CharacterVisuals" parent="." instance=ExtResource("3_e07sn")]
+[node name="CharacterVisuals" parent="." node_paths=PackedStringArray("character") instance=ExtResource("3_e07sn")]
+character = NodePath("..")
 
 [editable path="CharacterModel"]
 [editable path="CharacterVisuals"]
