@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dog0isspnyhq0"]
+
+[ext_resource type="TileSet" uid="uid://muqi1hqaygxm" path="res://resources/combined_tile_set.tres" id="1_2gsdv"]
+[ext_resource type="TileSet" uid="uid://buovyek6h66nn" path="res://resources/water_tile_set.tres" id="1_ly6an"]
+[ext_resource type="Script" path="res://scenes/world_map.gd" id="1_ogxqe"]
+[ext_resource type="TileSet" uid="uid://dy6h4xawjbd32" path="res://resources/sand_tile_set.tres" id="3_8uvm8"]
+[ext_resource type="Script" path="res://scripts/tile_map_dual.gd" id="3_236n6"]
+[ext_resource type="TileSet" uid="uid://gd1mbhyh2c5m" path="res://resources/dirt_tile_set.tres" id="4_f53u1"]
+[ext_resource type="TileSet" uid="uid://b1dhiyidqla57" path="res://resources/grass_tile_set.tres" id="5_pvpeq"]
+[ext_resource type="PackedScene" uid="uid://jpkoefpuhisw" path="res://scenes/boundary/boundary.tscn" id="8_fuvqe"]
+
+[node name="WorldMap" type="TileMapLayer"]
+z_index = -2
+tile_set = ExtResource("1_2gsdv")
+script = ExtResource("1_ogxqe")
+
+[node name="Water" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("1_ly6an")
+navigation_enabled = false
+
+[node name="WaterTileMapDual" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_tilemap")]
+position = Vector2(-8, -8)
+tile_set = ExtResource("1_ly6an")
+navigation_enabled = false
+script = ExtResource("3_236n6")
+world_tilemap = NodePath("../Water")
+
+[node name="Sand" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("3_8uvm8")
+
+[node name="SandTileMapDual" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_tilemap")]
+position = Vector2(-8, -8)
+tile_set = ExtResource("3_8uvm8")
+script = ExtResource("3_236n6")
+world_tilemap = NodePath("../Sand")
+
+[node name="Dirt" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("4_f53u1")
+
+[node name="DirtTileMapDual" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_tilemap")]
+position = Vector2(-8, -8)
+tile_set = ExtResource("4_f53u1")
+script = ExtResource("3_236n6")
+world_tilemap = NodePath("../Dirt")
+
+[node name="Grass" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_set = ExtResource("5_pvpeq")
+
+[node name="GrassTileMapDual" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_tilemap")]
+position = Vector2(-8, -8)
+tile_set = ExtResource("5_pvpeq")
+script = ExtResource("3_236n6")
+world_tilemap = NodePath("../Grass")
+
+[node name="Boundary0" parent="." instance=ExtResource("8_fuvqe")]
+
+[node name="Boundary1" parent="." instance=ExtResource("8_fuvqe")]
+team = 1

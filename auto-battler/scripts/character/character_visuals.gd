@@ -36,6 +36,10 @@ func _process(_delta):
 	health_bar.max_value = health.max_value
 	health_bar.min_value = health.min_value
 	health_bar.value = health.current_value
+	if health.current_value == health.max_value:
+		health_bar.visible = false
+	else:
+		health_bar.visible = true
 
 func _spawn_damage_popup(damage: int):
 	if damage == 0:

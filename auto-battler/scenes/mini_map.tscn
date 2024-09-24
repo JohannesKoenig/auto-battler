@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjrse5kuwokn"]
+
+[ext_resource type="Script" path="res://scripts/mini_map.gd" id="1_2qjq4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3c84s"]
+bg_color = Color(0.449789, 0.19534, 0, 1)
+
+[node name="MiniMap" type="MarginContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -4.0
+offset_bottom = 4.0
+grow_horizontal = 0
+script = ExtResource("1_2qjq4")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3c84s")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="BoundaryRect" type="TextureRect" parent="MarginContainer"]
+modulate = Color(1, 1, 1, 0.352941)
+layout_mode = 2
+
+[node name="CameraRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2

@@ -5,9 +5,12 @@ class_name CharacterSpawnerSpawningState extends State
 @export var duration: float = 1
 @export var spawn_delay: float = 0.5
 @export var spawn_radius: float = 20
+@export var cost: int
 
 @onready var spawn_target: Area2D = $Rig/SpawnTarget
 @onready var rig = $Rig
+
+var game_resource: GameResource
 
 var spawn_point: Vector2
 var has_spawn_point: bool = false
@@ -20,6 +23,12 @@ var nr_of_characters: int = 0:
 
 signal nr_of_character_changed(value: int)
 
+func accept_character(character: Character):
+	_character = character
+	if _character.team == 0:
+		game_resource = load("res://resources/game/game_resource_team_0.tres")
+	elif _character.team == 1:
+		game_resource = load("res://resources/game/game_resource_team_1.tres")
 
 func transition(input: StateMachineInput) -> String:
 	if _has_passed(duration):
@@ -43,7 +52,7 @@ func _physics_process(delta):
 		has_spawn_point = true
 
 func _spawn_character():
-	if nr_of_characters < max_spawn:
+	if nr_of_characters < max_spawn and game_resource.gold >= cost:
 		var character = character_template.instantiate()
 		character.global_position = spawn_point
 		character.team = _character.team
@@ -51,6 +60,7 @@ func _spawn_character():
 		CharacterSpawningManager.spawn(character)
 		character.character_model.state_machine.states["Dead"].entered.connect(_on_character_dead)
 		has_spawn_point = false
+		game_resource.gold -= cost
 	
 func _on_character_dead():
 	nr_of_characters -= 1

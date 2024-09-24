@@ -1,6 +1,13 @@
 class_name CharacterStatusSystem extends Node
 
 var character_status_dictionary: Dictionary = {}
+var _character: Character
+
+func accept_character(character: Character):
+	_character = character
+	for child in get_children():
+		if child is CharacterStatus:
+			child.accept_character(character)
 
 func _ready():
 	for child in get_children():

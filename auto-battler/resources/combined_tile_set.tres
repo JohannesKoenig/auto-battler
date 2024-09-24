@@ -1,0 +1,32 @@
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://muqi1hqaygxm"]
+
+[ext_resource type="Texture2D" uid="uid://tn5mdjlwacxt" path="res://assets/water_tile_set.png" id="1_vwopj"]
+[ext_resource type="Texture2D" uid="uid://dgf58i2fgdpff" path="res://assets/grass_tile_set.png" id="2_iin6v"]
+[ext_resource type="Texture2D" uid="uid://ci83apxmdntal" path="res://assets/dirt_tile_set.png" id="3_isrcq"]
+[ext_resource type="Texture2D" uid="uid://bofd5fb02o0xh" path="res://assets/sand_tile_set.png" id="4_dvbwb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0nysb"]
+resource_name = "Water"
+texture = ExtResource("1_vwopj")
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sn4ol"]
+resource_name = "Grass"
+texture = ExtResource("2_iin6v")
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7nwjj"]
+resource_name = "Dirt"
+texture = ExtResource("3_isrcq")
+2:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7wgro"]
+resource_name = "Sand"
+texture = ExtResource("4_dvbwb")
+2:1/0 = 0
+
+[resource]
+sources/1 = SubResource("TileSetAtlasSource_0nysb")
+sources/2 = SubResource("TileSetAtlasSource_sn4ol")
+sources/3 = SubResource("TileSetAtlasSource_7nwjj")
+sources/4 = SubResource("TileSetAtlasSource_7wgro")

@@ -8,6 +8,7 @@
 script = ExtResource("2_wbvqy")
 
 [node name="WorldMap" type="TileMapLayer" parent="."]
+visible = false
 tile_set = ExtResource("2_kllvu")
 
 [node name="TileMapDual" type="TileMapLayer" parent="." node_paths=PackedStringArray("world_tilemap")]

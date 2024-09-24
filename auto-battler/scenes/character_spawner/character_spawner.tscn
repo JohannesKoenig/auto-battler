@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cw3ww6udrwxwe"]
+[gd_scene load_steps=35 format=3 uid="uid://cw3ww6udrwxwe"]
 
 [ext_resource type="PackedScene" uid="uid://ddmet4rbg0aug" path="res://scenes/character/character.tscn" id="1_oik0s"]
 [ext_resource type="Script" path="res://scripts/character_spawner/character_spawner_input_generator.gd" id="2_k8hxe"]
@@ -9,15 +9,22 @@
 [ext_resource type="Script" path="res://scripts/character/status_system/status_condition.gd" id="7_01wuw"]
 [ext_resource type="Resource" uid="uid://bgbfdhgs4i8su" path="res://resources/character/AliveCondition.tres" id="8_0bygs"]
 [ext_resource type="PackedScene" uid="uid://dytfg3swscsnd" path="res://scenes/character_spawner/spawn.tscn" id="8_1ajin"]
+[ext_resource type="Script" path="res://scripts/character/status_system/greater_or_equal_than_status_condition.gd" id="9_aagsq"]
 [ext_resource type="PackedScene" uid="uid://ccul7rqr4oa2a" path="res://scenes/pip_display.tscn" id="9_kucn8"]
 [ext_resource type="Texture2D" uid="uid://1ewm5bp0sjlj" path="res://assets/character_spawner/baracks/baracks_spawn.png" id="10_5ljw4"]
 [ext_resource type="Script" path="res://scripts/character/character_dead_state.gd" id="10_ms063"]
 [ext_resource type="Resource" uid="uid://i6tj3v7eegke" path="res://resources/character/DeadCondition.tres" id="11_dpgvs"]
 [ext_resource type="Script" path="res://scripts/character/character_death_state.gd" id="11_ll74k"]
+[ext_resource type="Script" path="res://scripts/character/status_system/gold_status.gd" id="12_xfkyg"]
 [ext_resource type="Texture2D" uid="uid://fwe4bd2ih64j" path="res://assets/character_spawner/baracks/baracks_death.png" id="12_xx4lx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t12mg"]
 size = Vector2(3, 20)
+
+[sub_resource type="Resource" id="Resource_neh5x"]
+script = ExtResource("9_aagsq")
+cost = 2
+status = "Gold"
 
 [sub_resource type="Animation" id="Animation_tuisk"]
 resource_name = "Dead"
@@ -216,7 +223,9 @@ freeze_physics = true
 status_conditions = Array[ExtResource("7_01wuw")]([ExtResource("8_0bygs")])
 
 [node name="Spawn" parent="CharacterModel/StateMachine" index="1" instance=ExtResource("8_1ajin")]
+cost = 2
 freeze_physics = true
+status_conditions = Array[ExtResource("7_01wuw")]([ExtResource("8_0bygs"), SubResource("Resource_neh5x")])
 
 [node name="SpawnTarget" parent="CharacterModel/StateMachine/Spawn/Rig" index="0"]
 position = Vector2(20, 0)
@@ -232,6 +241,10 @@ script = ExtResource("11_ll74k")
 freeze_physics = true
 status_conditions = Array[ExtResource("7_01wuw")]([ExtResource("11_dpgvs")])
 priority = 0
+
+[node name="Gold" type="Node" parent="CharacterModel/CharacterStatusSystem" index="1"]
+script = ExtResource("12_xfkyg")
+max_value = 1000000
 
 [node name="AnimationPlayer" parent="CharacterVisuals" index="0"]
 libraries = {

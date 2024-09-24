@@ -23,7 +23,6 @@ func transition(input: StateMachineInput) -> String:
 		return input.actions[0]
 
 func update(input: StateMachineInput):
-	print(_actor.global_position, Boundary.world_to_map(_actor.global_position), map_target)
 	if has_target:
 		_navigation_agent.target_position = target
 		if _is_left(target):

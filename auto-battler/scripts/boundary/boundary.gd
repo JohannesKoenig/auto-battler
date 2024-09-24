@@ -5,14 +5,19 @@ class_name Boundary extends Node2D
 @onready var tile_map_dual: TileMapDual = $TileMapDual
 
 var full_tile_coords: Vector2i = Vector2i(2, 1)
+var blocked_tile_coords: Vector2i = Vector2i(0, 3)
 static var TILE_SIZE: int = 16
 
 func _ready():
-	BoundaryManager.add_boundary(team, self)
+	register()
 	if team == 0:
 		modulate = Color.ROYAL_BLUE
 	elif team == 1:
 		modulate = Color.TOMATO
+	world_map.visible = false
+
+func register():
+	BoundaryManager.add_boundary(team, self)
 
 func mark(coords: Vector2i):
 	tile_map_dual.fill_tile(coords)
@@ -20,9 +25,16 @@ func mark(coords: Vector2i):
 func unmark(coords: Vector2i):
 	tile_map_dual.erase_tile(coords)
 
+func block(coords: Vector2i):
+	world_map.set_cell(coords, 1, blocked_tile_coords)
+
 func is_marked(coords: Vector2i) -> bool:
 	var atlas_coords = world_map.get_cell_atlas_coords(coords)
 	return atlas_coords == full_tile_coords
+
+func is_blocked(coords: Vector2i) -> bool:
+	var atlas_coords = world_map.get_cell_atlas_coords(coords)
+	return atlas_coords == blocked_tile_coords
 
 static func world_to_map(coords: Vector2) -> Vector2i:
 	var x = coords.x / TILE_SIZE
@@ -45,8 +57,6 @@ func get_free_neighbours(coords: Vector2i) -> Array[Vector2i]:
 	var free_neighbours: Array[Vector2i] = []
 	var surrounding_cells = world_map.get_surrounding_cells(coords)
 	for cell in surrounding_cells: 
-		var source_id = world_map.get_cell_source_id(cell)
-		var atlas_coords = world_map.get_cell_atlas_coords(cell)
-		if atlas_coords != full_tile_coords:
+		if not is_marked(cell) and not is_blocked(cell):
 			free_neighbours.append(cell)
 	return free_neighbours

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://twld62g1c4dr"]
+
+[ext_resource type="Theme" uid="uid://3guvccjdw5o2" path="res://resources/ingame_button_theme.tres" id="1_1aact"]
+[ext_resource type="Texture2D" uid="uid://bkp10vor4shxi" path="res://assets/character_spawner/baracks/barracks_icon.png" id="2_fsqw1"]
+
+[node name="Barracks" type="Button"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("1_1aact")
+icon = ExtResource("2_fsqw1")

@@ -241,6 +241,7 @@ status_conditions = Array[ExtResource("4_16kio")]([ExtResource("7_fhr3b")])
 
 [node name="Dragging" type="Node" parent="CharacterModel/StateMachine" index="1"]
 script = ExtResource("3_3mgnp")
+freeze_physics = true
 status_conditions = Array[ExtResource("4_16kio")]([ExtResource("7_fhr3b")])
 priority = 1
 

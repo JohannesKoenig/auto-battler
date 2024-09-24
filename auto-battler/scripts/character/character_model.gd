@@ -16,6 +16,7 @@ signal death
 
 func _ready():
 	state_machine.accept_character(character)
+	character_status_system.accept_character(character)
 
 func update(input: CharacterInput):
 	input = character_status_system.validate(input, state_machine.states)
