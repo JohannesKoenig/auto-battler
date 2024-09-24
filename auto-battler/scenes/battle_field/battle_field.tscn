@@ -1,11 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://d01towpe124w6"]
+[gd_scene load_steps=13 format=4 uid="uid://d01towpe124w6"]
 
 [ext_resource type="Script" path="res://scripts/battle_field.gd" id="1_8emc1"]
 [ext_resource type="PackedScene" uid="uid://dog0isspnyhq0" path="res://scenes/world_map.tscn" id="2_wktsh"]
 [ext_resource type="PackedScene" uid="uid://kx4ruox0gvjb" path="res://scenes/building_placement_manager.tscn" id="4_wlccg"]
 [ext_resource type="Texture2D" uid="uid://b1c1vc3p6x34e" path="res://assets/GUI_overlay.png" id="5_u0twm"]
-[ext_resource type="Theme" uid="uid://3guvccjdw5o2" path="res://resources/ingame_button_theme.tres" id="6_83lsk"]
-[ext_resource type="Texture2D" uid="uid://bkp10vor4shxi" path="res://assets/character_spawner/baracks/barracks_icon.png" id="6_7773d"]
 [ext_resource type="PackedScene" uid="uid://twld62g1c4dr" path="res://scenes/ingame_button.tscn" id="6_a1i7b"]
 [ext_resource type="Theme" uid="uid://cexbxiuygar3p" path="res://resources/default_theme.tres" id="6_wklqw"]
 [ext_resource type="Script" path="res://scripts/gold_label.gd" id="7_48ql7"]
@@ -67,70 +65,6 @@ columns = 3
 [node name="Barracks" parent="CanvasLayer/GridContainer" instance=ExtResource("6_a1i7b")]
 layout_mode = 2
 
-[node name="Barracks2" type="Button" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme = ExtResource("6_83lsk")
-icon = ExtResource("6_7773d")
-
-[node name="Barracks3" type="Button" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme = ExtResource("6_83lsk")
-icon = ExtResource("6_7773d")
-
-[node name="Barracks4" type="Button" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme = ExtResource("6_83lsk")
-icon = ExtResource("6_7773d")
-
-[node name="Barracks5" type="Button" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme = ExtResource("6_83lsk")
-icon = ExtResource("6_7773d")
-
-[node name="Barracks6" type="Button" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme = ExtResource("6_83lsk")
-icon = ExtResource("6_7773d")
-
-[node name="Barracks7" type="Button" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme = ExtResource("6_83lsk")
-icon = ExtResource("6_7773d")
-
-[node name="Barracks8" type="Button" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme = ExtResource("6_83lsk")
-icon = ExtResource("6_7773d")
-
-[node name="Barracks9" type="Button" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-focus_mode = 0
-theme = ExtResource("6_83lsk")
-icon = ExtResource("6_7773d")
-
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
@@ -172,11 +106,4 @@ position = Vector2(-121, -55)
 [node name="Team_1_Start" type="Marker2D" parent="."]
 position = Vector2(242, 167)
 
-[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks2" to="." method="_on_barracks_pressed"]
-[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks3" to="." method="_on_barracks_pressed"]
-[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks4" to="." method="_on_barracks_pressed"]
-[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks5" to="." method="_on_barracks_pressed"]
-[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks6" to="." method="_on_barracks_pressed"]
-[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks7" to="." method="_on_barracks_pressed"]
-[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks8" to="." method="_on_barracks_pressed"]
-[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks9" to="." method="_on_barracks_pressed"]
+[connection signal="pressed" from="CanvasLayer/GridContainer/Barracks" to="." method="_on_barracks_pressed"]
