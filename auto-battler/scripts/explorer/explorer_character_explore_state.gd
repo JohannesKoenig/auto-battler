@@ -14,7 +14,7 @@ func transition(input: StateMachineInput) -> String:
 		return "Dead"
 	return "Explore"
 
-func update(input: StateMachineInput):
+func update(input: StateMachineInput, delta: float):
 	if _has_passed(duration):
 		var map_coords = Boundary.world_to_map(_actor.global_position)
 		_opponent_boundary.unmark(map_coords)

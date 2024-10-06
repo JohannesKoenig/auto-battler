@@ -441,6 +441,7 @@ animations = [{
 }]
 
 [node name="ExplorerCharacter" node_paths=PackedStringArray("character_input") instance=ExtResource("1_qx6sc")]
+unit_name = "Explorer"
 character_input = NodePath("ExplorerCharacterInputGenerator")
 
 [node name="ExplorerCharacterInputGenerator" type="Node2D" parent="." index="0" node_paths=PackedStringArray("pick_up_area", "target_scanner_area")]
@@ -486,16 +487,22 @@ priority = 0
 script = ExtResource("11_5w7kr")
 freeze_physics = true
 status_conditions = Array[ExtResource("3_ykq0d")]([ExtResource("4_k4vkn")])
-priority = 6
+priority = 2
 
 [node name="Explore" type="Node" parent="CharacterModel/StateMachine" index="4"]
 script = ExtResource("12_ohb7c")
+duration = null
+freeze_physics = null
 status_conditions = Array[ExtResource("3_ykq0d")]([ExtResource("4_k4vkn")])
+cool_down = null
 priority = 4
 
 [node name="Seek" type="Node" parent="CharacterModel/StateMachine" index="5"]
 script = ExtResource("13_jlvyc")
+max_duration = null
+freeze_physics = null
 status_conditions = Array[ExtResource("3_ykq0d")]([ExtResource("4_k4vkn")])
+cool_down = null
 priority = 7
 
 [node name="AnimationPlayer" parent="CharacterVisuals" index="0"]

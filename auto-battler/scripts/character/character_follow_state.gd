@@ -12,7 +12,7 @@ func accept_navigation_agent(navigation_agent: NavigationAgent2D):
 	_navigation_agent.velocity_computed.connect(_update_movement)
 
 
-func update(input: StateMachineInput):
+func update(input: StateMachineInput, delta: float):
 	if input is not CharacterInput:
 		return
 	target = input.target

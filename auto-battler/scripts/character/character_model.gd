@@ -18,7 +18,7 @@ func _ready():
 	state_machine.accept_character(character)
 	character_status_system.accept_character(character)
 
-func update(input: CharacterInput):
+func update(input: CharacterInput, delta: float):
 	input = character_status_system.validate(input, state_machine.states)
 	input = character_attack_system.validate(input, state_machine.states)
 	input = cool_down_validator.validate(input, state_machine.states)
@@ -26,7 +26,7 @@ func update(input: CharacterInput):
 	input = DraggingManager.validate(input, character.team)
 	input.sort(state_machine.states)
 	
-	state_machine.update(input)
+	state_machine.update(input, delta)
 	if not state_machine.states[state_machine.current_state].freeze_physics:
 		physics.move_and_slide()
 

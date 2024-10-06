@@ -9,11 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://caxn0uicjpbmv" path="res://assets/city_hall/city_hall_spawn.png" id="5_77ovg"]
 [ext_resource type="Script" path="res://scripts/character/status_system/greater_or_equal_than_status_condition.gd" id="5_lnxla"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_u5dha"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1vk5"]
 radius = 0.1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pk8yc"]
-size = Vector2(5, 32)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4mxbe"]
+radius = 2.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ai7h2"]
 size = Vector2(32, 5)
@@ -132,12 +132,13 @@ animations = [{
 }]
 
 [node name="CityHall" instance=ExtResource("1_yol5h")]
+unit_name = "CityHall"
 
 [node name="CollisionShape2D" parent="CharacterSpawnerInputGenerator/PickUpArea" index="0"]
-shape = SubResource("CircleShape2D_u5dha")
+shape = SubResource("CircleShape2D_h1vk5")
 
 [node name="CollisionShape2D" parent="CharacterModel/Physics" index="0"]
-shape = SubResource("RectangleShape2D_pk8yc")
+shape = SubResource("CapsuleShape2D_4mxbe")
 
 [node name="CollisionShape2D" parent="CharacterModel/Physics/Hurtbox" index="0"]
 position = Vector2(0, -0.5)

@@ -53,10 +53,36 @@ static func map_to_world(coords: Vector2i) -> Vector2:
 			(float(coords.y) + y_offset) * float(TILE_SIZE)
 		)
 
-func get_free_neighbours(coords: Vector2i) -> Array[Vector2i]:
+func get_free_neighbours(coords: Vector2i, distance: int = 1) -> Array[Vector2i]:
 	var free_neighbours: Array[Vector2i] = []
-	var surrounding_cells = world_map.get_surrounding_cells(coords)
+	var surrounding_cells = []
+	if distance == 0:
+		surrounding_cells = coords
+	elif distance == 1:
+		surrounding_cells = world_map.get_surrounding_cells(coords)
+	elif distance > 1:
+		for i in [-1 * distance, distance]:
+			for j in range(-1 * distance, distance + 1):
+				surrounding_cells.append(coords + Vector2i(i, j))
+				surrounding_cells.append(coords + Vector2i(j, i))
 	for cell in surrounding_cells: 
 		if not is_marked(cell) and not is_blocked(cell):
 			free_neighbours.append(cell)
 	return free_neighbours
+
+func get_marked_neighbours(coords: Vector2i, distance: int = 1) -> Array[Vector2i]:
+	var marked_neighbours: Array[Vector2i] = []
+	var surrounding_cells = []
+	if distance == 0:
+		surrounding_cells.append(coords)
+	elif distance == 1:
+		surrounding_cells = world_map.get_surrounding_cells(coords)
+	elif distance > 1:
+		for i in [-1 * distance, distance]:
+			for j in range(-1 * distance, distance + 1):
+				surrounding_cells.append(coords + Vector2i(i, j))
+				surrounding_cells.append(coords + Vector2i(j, i))
+	for cell in surrounding_cells: 
+		if is_marked(cell):
+			marked_neighbours.append(cell)
+	return marked_neighbours

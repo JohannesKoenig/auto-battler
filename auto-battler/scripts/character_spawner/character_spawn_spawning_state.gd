@@ -35,7 +35,7 @@ func transition(input: StateMachineInput) -> String:
 		return "Idle"
 	return name
 
-func update(input: StateMachineInput):
+func update(input: StateMachineInput, delta: float):
 	if _has_passed(spawn_delay) and not spawned:
 		_spawn_character()
 		spawned = true

@@ -9,12 +9,15 @@ var at_target: bool = false
 var movement_speed: float = 10
 var safe_target_position: Vector2
 
+@export var max_duration: float = 5
 
 func accept_navigation_agent(navigation_agent: NavigationAgent2D):
 	_navigation_agent = navigation_agent
 	_navigation_agent.velocity_computed.connect(_update_movement)
 
 func transition(input: StateMachineInput) -> String:
+	if _has_passed(max_duration):
+		return "Idle"
 	if not has_target:
 		return "Idle"
 	elif at_target:
@@ -22,7 +25,7 @@ func transition(input: StateMachineInput) -> String:
 	else:
 		return input.actions[0]
 
-func update(input: StateMachineInput):
+func update(input: StateMachineInput, delta: float):
 	if has_target:
 		_navigation_agent.target_position = target
 		if _is_left(target):

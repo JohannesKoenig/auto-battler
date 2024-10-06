@@ -1,9 +1,10 @@
 @tool
 class_name Character extends Node2D
 
-@onready var character_model = $CharacterModel
+@onready var character_model: CharacterModel = $CharacterModel
 @onready var character_visuals = $CharacterVisuals
 
+@export var unit_name: String
 @export var character_input: CharacterInputGenerator:
 	set(value):
 		character_input = value
@@ -16,19 +17,21 @@ func _ready():
 		return
 	character_visuals.accept_model(character_model)
 	character_model.physics.global_position = global_position
+	UnitManager.register_unit(self, team)
 
-func update(input: CharacterInput):
-	character_model.update(input)
+func update(input: CharacterInput, delta: float):
+	character_model.update(input, delta)
 	
-func _process(_delta):
+func _process(delta):
 	if Engine.is_editor_hint():
 		return
 	var input = character_input.get_input()
-	update(input)
+	update(input, delta)
 	input.queue_free()
 	transform = character_model.physics.transform
 
 func _on_death():
+	UnitManager.deregister_unit(self, team)
 	queue_free()
 
 func _get_configuration_warnings():

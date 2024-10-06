@@ -15,6 +15,15 @@ var active: bool = false
 
 signal entered
 
+static func is_idle(state_name: String) -> bool:
+	return is_state("Idle").call(state_name)
+
+static func not_is_state(state: String) -> Callable:
+	return func(state_name: String): return state_name != state
+
+static func is_state(state: String) -> Callable:
+	return func(state_name: String): return state_name == state
+
 func accept_actor(actor: CharacterBody2D):
 	_actor = actor
 
@@ -48,7 +57,7 @@ func on_enter():
 	_mark_enter()
 	pass
 
-func update(input: StateMachineInput):
+func update(input: StateMachineInput, delta: float):
 	pass
 
 func _mark_enter():

@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://dds12oglgxgt2"]
+
+[ext_resource type="Script" path="res://scripts/ai/ai.gd" id="1_3xldt"]
+[ext_resource type="Script" path="res://scripts/ai/ai_state_machine.gd" id="2_r5dp0"]
+[ext_resource type="Script" path="res://scripts/ai/ai_input_generator.gd" id="3_8aabl"]
+[ext_resource type="Script" path="res://scripts/ai/ai_idle_task.gd" id="3_l84wn"]
+[ext_resource type="Script" path="res://scripts/ai/ai_explore_task.gd" id="4_rc85o"]
+
+[node name="Ai" type="Node2D"]
+script = ExtResource("1_3xldt")
+
+[node name="AiStateMachine" type="Node" parent="."]
+script = ExtResource("2_r5dp0")
+starting_state = "Idle"
+
+[node name="Idle" type="Node" parent="AiStateMachine"]
+script = ExtResource("3_l84wn")
+
+[node name="Explore" type="Node" parent="AiStateMachine"]
+script = ExtResource("4_rc85o")
+priority = 2
+
+[node name="AiInputGenerator" type="Node2D" parent="."]
+script = ExtResource("3_8aabl")

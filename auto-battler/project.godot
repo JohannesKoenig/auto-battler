@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 CharacterSpawningManager="*res://scripts/character_spawning_manager.gd"
 BoundaryManager="*res://scripts/boundary/boundary_manager.gd"
 DraggingManager="*res://scripts/dragging_manager.gd"
+UnitManager="*res://scripts/unit_manager.gd"
 
 [display]
 
@@ -30,6 +31,7 @@ window/size/viewport_width=256
 window/size/viewport_height=144
 window/size/mode=2
 window/stretch/mode="viewport"
+window/dpi/allow_hidpi=false
 
 [gui]
 
@@ -83,4 +85,5 @@ Down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

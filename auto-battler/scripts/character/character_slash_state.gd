@@ -15,7 +15,7 @@ func transition(input: StateMachineInput) -> String:
 		return "Dragging"
 	return name
 
-func update(input: StateMachineInput):
+func update(input: StateMachineInput, delta: float):
 	if input is not CharacterInput:
 		return
 	var target = input.target

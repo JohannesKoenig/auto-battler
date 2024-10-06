@@ -233,6 +233,7 @@ fill_to = Vector2(1, 0.5)
 metadata/_snap_enabled = true
 
 [node name="SpiderCharacter" node_paths=PackedStringArray("character_input") instance=ExtResource("1_effx3")]
+unit_name = "Spider"
 character_input = NodePath("SpiderCharacterInputGenerator")
 
 [node name="SpiderCharacterInputGenerator" type="Node2D" parent="." index="0" node_paths=PackedStringArray("pick_up_area", "target_scanner_area")]
@@ -289,6 +290,9 @@ priority = 0
 
 [node name="Follow" type="Node" parent="CharacterModel/StateMachine" index="3"]
 script = ExtResource("9_qk5n2")
+freeze_physics = null
+status_conditions = null
+cool_down = null
 priority = 9
 
 [node name="Slash" parent="CharacterModel/StateMachine" index="4" instance=ExtResource("10_gd5v3")]

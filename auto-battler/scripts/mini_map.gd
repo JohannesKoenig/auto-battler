@@ -57,5 +57,8 @@ func _draw_camera_rect():
 	
 	_boundary_rect_image.fill(Color.from_string("#00000000", Color.WHITE))
 	for cell in tile_map.boundary_0.world_map.get_used_cells():
-		_boundary_rect_image.set_pixel(cell.x + _min_x, cell.y + _min_y, Color.BLUE)
+		if tile_map.boundary_0.is_marked(cell):
+			_boundary_rect_image.set_pixel(cell.x + _min_x, cell.y + _min_y, Color.BLUE)
+		elif tile_map.boundary_1.is_marked(cell):
+			_boundary_rect_image.set_pixel(cell.x + _min_x, cell.y + _min_y, Color.RED)
 	boundary_rect.texture.update(_boundary_rect_image)

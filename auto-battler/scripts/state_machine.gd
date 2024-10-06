@@ -30,12 +30,12 @@ func accept_character(character: Character):
 	for state in states.keys():
 		states[state].accept_character(character)
 
-func update(input: StateMachineInput):
+func update(input: StateMachineInput, delta: float):
 	var current_state_node = states[current_state]
 	var next_state = current_state_node.transition(input)
 	if next_state != current_state:
 		switch_states(next_state)
-	current_state_node.update(input)
+	current_state_node.update(input, delta)
 
 func switch_states(next_state: String):
 	var current_state_node = states[current_state]

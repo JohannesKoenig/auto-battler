@@ -7,5 +7,6 @@ func is_active_team(team: int):
 	
 func validate(input: CharacterInput, team: int) -> CharacterInput:
 	if not is_active_team(team):
-		input.actions = input.actions.filter(func(a): return a!="Dragging")
+		if not input.dragging_injected:
+			input.actions = input.actions.filter(func(a): return a!="Dragging")
 	return input

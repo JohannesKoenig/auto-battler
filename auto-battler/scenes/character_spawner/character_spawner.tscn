@@ -191,6 +191,7 @@ animations = [{
 }]
 
 [node name="CharacterSpawner" node_paths=PackedStringArray("character_input") instance=ExtResource("1_oik0s")]
+unit_name = "Barracks"
 character_input = NodePath("CharacterSpawnerInputGenerator")
 
 [node name="CharacterSpawnerInputGenerator" type="Node2D" parent="." index="0" node_paths=PackedStringArray("pick_up_area", "target_scanner_area")]

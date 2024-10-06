@@ -12,7 +12,7 @@ func transition(input: StateMachineInput) -> String:
 		return input.actions[0]
 	return name
 
-func update(input: StateMachineInput):
+func update(input: StateMachineInput, delta: float):
 	if _has_passed(spawn_delay) and input is CharacterInput and not shot:
 		var projectile_instance = projectile.instantiate()
 		projectile_instance.global_position = projectile_emitter.global_position
